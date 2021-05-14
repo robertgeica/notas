@@ -2,9 +2,20 @@
   <div class="sidebar">
     <h3>Notes-App</h3>
 
+    <div v-if="showModal">
+      <Modal @close="toggleModal">
+        <template v-slot:actions>
+          <input type="text">
+          <button>Add category</button>
+        </template>
+        
+        <p>Add new category</p>
+      </Modal>
+    </div>
+
     <div class="categories-actions">
       <h4>Categories</h4>
-      <span>+</span>
+      <span @click="toggleModal">+</span>
     </div>
 
     <div
@@ -25,7 +36,7 @@
     <div class="tag" :key="tag.id" v-for="tag in tags">
       <h5
         :style="{
-          'background': `${tag.tagColor}`,
+          background: `${tag.tagColor}`,
         }"
       >
         {{ tag.tagName }}
@@ -35,9 +46,21 @@
 </template>
 
 <script>
+import Modal from "../components/Modal";
 export default {
   name: "Sidebar",
-  props: ['categories', 'tags']
+  props: ["categories", "tags"],
+  components: { Modal },
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
+  },
 };
 </script>
 

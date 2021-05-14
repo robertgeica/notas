@@ -1,6 +1,13 @@
 <template>
-  <Sidebar :categories="categories" :tags="tags" @get-category="getSelectedCategory" />
+  <Sidebar
+    :categories="categories"
+    :tags="tags"
+    :showModal="showModal"
+    @get-category="getSelectedCategory"
+  />
   <Notes :selectedCategory="selectedCategory" />
+
+  
 </template>
 
 <script>
@@ -18,7 +25,7 @@ export default {
     return {
       categories: [],
       tags: [],
-      selectedCategory: {},
+      selectedCategory: {}
     };
   },
   methods: {
@@ -44,6 +51,7 @@ export default {
 
       return data;
     },
+
   },
   async created() {
     this.categories = await this.getCategories();
