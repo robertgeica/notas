@@ -1,0 +1,24 @@
+{
+  "category": [
+    {
+      "categoryName": "Javascript",
+      "notes": [
+        {
+          "noteTitle": "ES6",
+          "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
+          "noteTags": ["programming", "web"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "tagName": "web",
+      "tagColor": "#2980b9"
+    },
+    {
+      "tagName": "programming",
+      "tagColor": "#27ae60"
+    }
+  ]
+}
