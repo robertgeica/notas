@@ -6,11 +6,37 @@
       <Modal @close="toggleModal">
         <template v-slot:actions>
           <input type="text" v-model="newCategoryName" class="input" />
-          <button @click="$emit('add-category', newCategoryName); toggleModal()">Add category</button>
-          
+          <button
+            @click="
+              $emit('add-category', newCategoryName);
+              toggleModal();
+            "
+          >
+            Add category
+          </button>
         </template>
 
         <p>Add new category</p>
+      </Modal>
+    </div>
+
+    <div v-if="showTagModal">
+      <Modal @close="toggleTagModal">
+        <template v-slot:actions>
+          <input type="text" v-model="newTagObj.tagName" class="input" placeholder="Tag name"/>
+          <input type="text" v-model="newTagObj.tagColor" class="input" placeholder="Tag color" />
+
+          <button
+            @click="
+              $emit('add-tag', newTagObj);
+              toggleTagModal();
+            "
+          >
+            Add tag
+          </button>
+        </template>
+
+        <p>Add new tag</p>
       </Modal>
     </div>
 
@@ -31,7 +57,7 @@
 
     <div class="tags-actions">
       <h4>Tags</h4>
-      <span>+</span>
+      <span @click="toggleTagModal">+</span>
     </div>
 
     <div class="tag" :key="tag.id" v-for="tag in tags">
@@ -55,14 +81,20 @@ export default {
   data() {
     return {
       showModal: false,
-      newCategoryName: ''
+      showTagModal: false,
+      newCategoryName: "",
+      newTagObj: {},
     };
   },
   methods: {
     toggleModal() {
+      if(showModal) this.newCategoryName = '';
       this.showModal = !this.showModal;
     },
-    
+    toggleTagModal() {
+      if(this.showTagModal) this.newTagObj = {};
+      this.showTagModal = !this.showTagModal;
+    },
   },
 };
 </script>
@@ -75,6 +107,7 @@ export default {
   width: 13em;
   height: 100%;
   background-color: #ecf0f1;
+  overflow-y: scroll;
 
   .input {
     border: 1px solid grey;

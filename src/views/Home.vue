@@ -4,10 +4,9 @@
     :tags="tags"
     @get-category="getSelectedCategory"
     @add-category="addNewCategory"
+    @add-tag="addNewTag"
   />
   <Notes :selectedCategory="selectedCategory" />
-
-  
 </template>
 
 <script>
@@ -53,7 +52,6 @@ export default {
     },
 
     async addNewCategory(newCategoryName) {
-      
       if (!newCategoryName) {
         alert("Add a name");
         return;
@@ -72,11 +70,30 @@ export default {
         body: JSON.stringify(newCategory),
       });
 
-
       const data = await res.json();
       this.categories = [...this.categories, data];
-      this.newCategoryName = "";
     },
+
+    async addNewTag(newTagObj) {
+
+      console.log(newTagObj)
+      if (!newTagObj.tagName) {
+        alert("Add a tag name");
+        return;
+      }
+
+
+      const res = await fetch("http://localhost:5000/tags", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newTagObj),
+      });
+
+      const data = await res.json();
+      this.tags = [...this.tags, data];
+    }
   },
   async created() {
     this.categories = await this.getCategories();

@@ -83,16 +83,48 @@
       "categoryName": "ttt",
       "notes": [],
       "id": 7
+    },
+    {
+      "categoryName": "test",
+      "notes": [],
+      "id": 8
     }
   ],
   "tags": [
     {
+      "id": 0,
       "tagName": "web",
       "tagColor": "#2980b9"
     },
     {
+      "id": 1,
       "tagName": "programming",
       "tagColor": "#27ae60"
+    },
+    {
+      "tagName": "javascript",
+      "tagColor": "yellow",
+      "id": 2
+    },
+    {
+      "tagName": "react",
+      "tagColor": "lightblue",
+      "id": 3
+    },
+    {
+      "tagName": "vue",
+      "tagColor": "green",
+      "id": 4
+    },
+    {
+      "tagName": "z",
+      "tagColor": "grey",
+      "id": 5
+    },
+    {
+      "tagName": "java",
+      "tagColor": "black",
+      "id": 6
     }
   ]
 }
