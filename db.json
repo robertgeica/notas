@@ -1,12 +1,29 @@
 {
   "category": [
     {
+      "id": 0,
       "categoryName": "Javascript",
       "notes": [
         {
           "noteTitle": "ES6",
           "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
           "noteTags": ["programming", "web"]
+        },
+        {
+          "noteTitle": "OOP",
+          "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
+          "noteTags": ["programming", "web"]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "categoryName": "Vue",
+      "notes": [
+        {
+          "noteTitle": "Composition API",
+          "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
+          "noteTags": ["web", "framework"]
         }
       ]
     }
