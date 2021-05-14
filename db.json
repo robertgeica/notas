@@ -20,7 +20,7 @@
         },
         {
           "noteTitle": "OOP",
-          "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
+          "noteBody": "# Consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
           "noteTags": [
             {
               "tagName": "programming",
@@ -88,6 +88,11 @@
       "categoryName": "test",
       "notes": [],
       "id": 8
+    },
+    {
+      "categoryName": "dasdas",
+      "notes": [],
+      "id": 9
     }
   ],
   "tags": [

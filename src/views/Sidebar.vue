@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     toggleModal() {
-      if(showModal) this.newCategoryName = '';
+      if(this.showModal) this.newCategoryName = '';
       this.showModal = !this.showModal;
     },
     toggleTagModal() {

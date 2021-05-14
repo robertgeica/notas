@@ -7,7 +7,12 @@
       <button>Add note</button>
     </div>
 
-    <div :key="note" v-for="note in selectedCategory.notes" class="note">
+    <div
+      :key="note"
+      v-for="note in selectedCategory.notes"
+      @click="$emit('get-note', note)"
+      class="note"
+    >
       <h4>{{ note.noteTitle }}</h4>
       <span
         :key="tag"
@@ -29,6 +34,8 @@ export default {
   props: ["selectedCategory"],
   data() {
     return {};
+  },
+  methods: {
   },
 };
 </script>
@@ -52,7 +59,8 @@ export default {
       margin: 10px 0;
     }
 
-    input, button {
+    input,
+    button {
       padding: 10px 0;
       border-radius: 5px;
       border: none;

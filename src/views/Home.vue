@@ -6,12 +6,14 @@
     @add-category="addNewCategory"
     @add-tag="addNewTag"
   />
-  <Notes :selectedCategory="selectedCategory" />
+  <Notes :selectedCategory="selectedCategory" @get-note="getCurrentNote" />
+  <NoteEditor v-if="renderMarkdown" :currentNote="currentNote" />
 </template>
 
 <script>
 import Sidebar from "./Sidebar";
 import Notes from "./Notes";
+import NoteEditor from "./NoteEditor";
 
 export default {
   name: "App",
@@ -19,12 +21,15 @@ export default {
   components: {
     Sidebar,
     Notes,
+    NoteEditor,
   },
   data() {
     return {
       categories: [],
       tags: [],
       selectedCategory: {},
+      currentNote: {},
+      renderMarkdown: false
     };
   },
   methods: {
@@ -75,13 +80,11 @@ export default {
     },
 
     async addNewTag(newTagObj) {
-
-      console.log(newTagObj)
+      console.log(newTagObj);
       if (!newTagObj.tagName) {
         alert("Add a tag name");
         return;
       }
-
 
       const res = await fetch("http://localhost:5000/tags", {
         method: "POST",
@@ -93,6 +96,10 @@ export default {
 
       const data = await res.json();
       this.tags = [...this.tags, data];
+    },
+    getCurrentNote(note) {
+      this.currentNote = note;
+      this.renderMarkdown = true;
     }
   },
   async created() {
