@@ -5,10 +5,10 @@
     <div v-if="showModal">
       <Modal @close="toggleModal">
         <template v-slot:actions>
-          <input type="text">
-          <button>Add category</button>
+          <input type="text" v-model="newCategoryName" class="input" />
+          <button @click="addNewCategory">Add category</button>
         </template>
-        
+
         <p>Add new category</p>
       </Modal>
     </div>
@@ -54,11 +54,41 @@ export default {
   data() {
     return {
       showModal: false,
+      newCategoryName: "",
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
+    },
+    async addNewCategory(e) {
+      e.preventDefault();
+
+      if (!this.newCategoryName) {
+        alert("Add a name");
+        return;
+      }
+
+      const newCategory = {
+        categoryName: this.newCategoryName,
+        notes: [],
+      };
+
+      const res = await fetch("http://localhost:5000/category", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newCategory),
+      });
+
+
+      const data = await res.json();
+      this.getCategories();
+      // this.categories = [...this.categories, data];
+      // this.toggleModal();
+
+      this.newCategoryName = "";
     },
   },
 };
@@ -71,8 +101,12 @@ export default {
   margin: 0;
   width: 13em;
   height: 100%;
-
   background-color: #ecf0f1;
+
+  .input {
+    border: 1px solid grey;
+    margin: 10px 0;
+  }
 
   .categories-actions,
   .category,

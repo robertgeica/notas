@@ -8,3 +8,14 @@ body {
 h5 {
   margin: 5px 0;
 }
+
+input, button {
+  padding: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  margin: 0 0 15px;
+}

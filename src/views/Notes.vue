@@ -61,7 +61,6 @@ export default {
     button {
       cursor: pointer;
       margin: 0 0 15px;
-
     }
   }
 
