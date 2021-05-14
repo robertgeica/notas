@@ -1,26 +1,21 @@
 <template>
-    <Sidebar />
-
-  <router-view/>
+  <Home />
 </template>
 
 <script>
-import Sidebar from './views/Sidebar';
+import Home from "./views/Home";
 
 export default {
   name: "App",
 
-  methods: {
-
-  },
+  methods: {},
   components: {
-    Sidebar
-  }
-}
+    Home,
+  },
+};
 </script>
 <style lang="scss">
-@import url('./assets/global.scss');
-
+@import url("./assets/global.scss");
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -30,8 +25,5 @@ export default {
   color: #2c3e50;
   display: flex;
   height: 100%;
-
 }
-
-
 </style>

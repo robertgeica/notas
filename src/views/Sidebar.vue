@@ -7,7 +7,12 @@
       <span>+</span>
     </div>
 
-    <div class="category" :key="category.id" v-for="category in categories">
+    <div
+      class="category"
+      :key="category.id"
+      v-for="category in categories"
+      @click="$emit('get-category', category.id)"
+    >
       <h5>{{ category.categoryName }}</h5>
       <span>{{ category.notes.length }}</span>
     </div>
@@ -32,31 +37,7 @@
 <script>
 export default {
   name: "Sidebar",
-  data() {
-    return {
-      categories: [],
-      tags: [],
-    };
-  },
-  methods: {
-    async getCategories() {
-      const res = await fetch("http://localhost:5000/category");
-      const data = await res.json();
-
-      return data;
-    },
-
-    async getTags() {
-      const res = await fetch("http://localhost:5000/tags");
-      const data = await res.json();
-
-      return data;
-    },
-  },
-  async created() {
-    this.categories = await this.getCategories();
-    this.tags = await this.getTags();
-  },
+  props: ['categories', 'tags']
 };
 </script>
 
@@ -64,10 +45,11 @@ export default {
 .sidebar {
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
   margin: 0;
-  width: 10em;
+  width: 13em;
   height: 100%;
+
+  background-color: #ecf0f1;
 
   .categories-actions,
   .category,
@@ -84,13 +66,19 @@ export default {
     }
   }
 
+  .category {
+    margin: 5px auto;
+    h5 {
+    }
+    cursor: pointer;
+  }
   .tag {
     h5 {
       width: 100%;
       padding: 5px 0px;
       border-radius: 5px;
       cursor: pointer;
-}
+    }
   }
 }
 </style>
