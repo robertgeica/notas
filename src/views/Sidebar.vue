@@ -6,7 +6,8 @@
       <Modal @close="toggleModal">
         <template v-slot:actions>
           <input type="text" v-model="newCategoryName" class="input" />
-          <button @click="addNewCategory">Add category</button>
+          <button @click="$emit('add-category', newCategoryName); toggleModal()">Add category</button>
+          
         </template>
 
         <p>Add new category</p>
@@ -54,42 +55,14 @@ export default {
   data() {
     return {
       showModal: false,
-      newCategoryName: "",
+      newCategoryName: ''
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
     },
-    async addNewCategory(e) {
-      e.preventDefault();
-
-      if (!this.newCategoryName) {
-        alert("Add a name");
-        return;
-      }
-
-      const newCategory = {
-        categoryName: this.newCategoryName,
-        notes: [],
-      };
-
-      const res = await fetch("http://localhost:5000/category", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(newCategory),
-      });
-
-
-      const data = await res.json();
-      this.getCategories();
-      // this.categories = [...this.categories, data];
-      // this.toggleModal();
-
-      this.newCategoryName = "";
-    },
+    
   },
 };
 </script>

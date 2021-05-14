@@ -2,8 +2,8 @@
   <Sidebar
     :categories="categories"
     :tags="tags"
-    :showModal="showModal"
     @get-category="getSelectedCategory"
+    @add-category="addNewCategory"
   />
   <Notes :selectedCategory="selectedCategory" />
 
@@ -25,7 +25,7 @@ export default {
     return {
       categories: [],
       tags: [],
-      selectedCategory: {}
+      selectedCategory: {},
     };
   },
   methods: {
@@ -52,6 +52,31 @@ export default {
       return data;
     },
 
+    async addNewCategory(newCategoryName) {
+      
+      if (!newCategoryName) {
+        alert("Add a name");
+        return;
+      }
+
+      const newCategory = {
+        categoryName: newCategoryName,
+        notes: [],
+      };
+
+      const res = await fetch("http://localhost:5000/category", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newCategory),
+      });
+
+
+      const data = await res.json();
+      this.categories = [...this.categories, data];
+      this.newCategoryName = "";
+    },
   },
   async created() {
     this.categories = await this.getCategories();
