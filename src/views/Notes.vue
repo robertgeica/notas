@@ -2,8 +2,9 @@
   <div class="sidebar">
     <h3>{{ selectedCategory.categoryName }}</h3>
 
-    <div class="">
+    <div class="note-actions">
       <input type="text" />
+      <button>Add note</button>
     </div>
 
     <div :key="note" v-for="note in selectedCategory.notes" class="note">
@@ -41,6 +42,29 @@ export default {
   height: 100%;
   background-color: #f5f7f8;
 
+  .note-actions {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+
+    input {
+      margin: 10px 0;
+    }
+
+    input, button {
+      padding: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      cursor: pointer;
+      margin: 0 0 15px;
+
+    }
+  }
+
   .note {
     padding: 0 10px;
     text-align: left;
@@ -53,8 +77,9 @@ export default {
     span {
       margin: 0 10px 0 0;
       padding: 5px;
-      border-radius: 10px;
+      border-radius: 5px;
       color: #fff;
+      font-size: 14px;
     }
   }
 }

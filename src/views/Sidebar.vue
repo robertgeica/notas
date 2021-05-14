@@ -25,7 +25,7 @@
     <div class="tag" :key="tag.id" v-for="tag in tags">
       <h5
         :style="{
-          'box-shadow': `${tag.tagColor} 0px 6px 12px -2px, ${tag.tagColor} 0px 3px 7px -3px`,
+          'background': `${tag.tagColor}`,
         }"
       >
         {{ tag.tagName }}
@@ -78,6 +78,7 @@ export default {
       padding: 5px 0px;
       border-radius: 5px;
       cursor: pointer;
+      color: #fff;
     }
   }
 }
