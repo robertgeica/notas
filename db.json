@@ -7,12 +7,30 @@
         {
           "noteTitle": "ES6",
           "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
-          "noteTags": ["programming", "web"]
+          "noteTags": [
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
+            },
+            {
+              "tagName": "web",
+              "tagColor": "#2980b9"
+            }
+          ]
         },
         {
           "noteTitle": "OOP",
           "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
-          "noteTags": ["programming", "web"]
+          "noteTags": [
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
+            },
+            {
+              "tagName": "web",
+              "tagColor": "#2980b9"
+            }
+          ]
         }
       ]
     },
@@ -23,7 +41,16 @@
         {
           "noteTitle": "Composition API",
           "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
-          "noteTags": ["web", "framework"]
+          "noteTags": [
+            {
+              "tagName": "web",
+              "tagColor": "#2980b9"
+            },
+            {
+              "tagName": "framework",
+              "tagColor": "#27ae60"
+            }
+          ]
         }
       ]
     }
