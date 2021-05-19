@@ -134,8 +134,9 @@ export default {
       });
 
       const data = await res.json();
-
       this.selectedCategory = data;
+      const allCategories = await this.getCategories();
+      this.categories = allCategories;
     },
   },
   async created() {

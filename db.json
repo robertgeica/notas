@@ -100,32 +100,118 @@
     },
     {
       "categoryName": "1",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "1",
+          "noteBody": "1",
+          "noteTags": [
+            {
+              "tagName": "web",
+              "tagColor": "#2980b9"
+            }
+          ]
+        }
+      ],
       "id": 2
     },
     {
       "categoryName": "test",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "d",
+          "noteBody": "d",
+          "noteTags": [
+            {
+              "tagName": "web",
+              "tagColor": "#2980b9"
+            }
+          ]
+        }
+      ],
       "id": 3
     },
     {
       "categoryName": "z",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "ddd",
+          "noteBody": "ddd",
+          "noteTags": [
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
+            }
+          ]
+        },
+        {
+          "noteTitle": "x",
+          "noteBody": "x",
+          "noteTags": [
+            {
+              "tagName": "react",
+              "tagColor": "lightblue"
+            }
+          ]
+        }
+      ],
       "id": 4
     },
     {
       "categoryName": "test 2",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "asd",
+          "noteBody": "das",
+          "noteTags": [
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
+            }
+          ]
+        }
+      ],
       "id": 5
     },
     {
       "categoryName": "test 3",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "t3",
+          "noteBody": "t3",
+          "noteTags": [
+            {
+              "tagName": "test",
+              "tagColor": "tag red"
+            }
+          ]
+        }
+      ],
       "id": 6
     },
     {
       "categoryName": "ttt",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "d",
+          "noteBody": "d",
+          "noteTags": [
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
+            }
+          ]
+        },
+        {
+          "noteTitle": "s",
+          "noteBody": "s",
+          "noteTags": [
+            {
+              "tagName": "vue",
+              "tagColor": "green"
+            }
+          ]
+        }
+      ],
       "id": 7
     },
     {

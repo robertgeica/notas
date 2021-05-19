@@ -1,5 +1,9 @@
 <template>
   <div id="editor">
+    <p>
+
+    {{this.currentNote.noteBody}}
+    </p>
     <textarea :value="this.currentNote.noteBody"></textarea>
   </div>
 </template>
