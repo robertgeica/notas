@@ -6,7 +6,7 @@
     @add-category="addNewCategory"
     @add-tag="addNewTag"
   />
-  <Notes :selectedCategory="selectedCategory" @get-note="getCurrentNote" />
+  <Notes :selectedCategory="selectedCategory" :tags="tags" @add-note="addNewNote" @get-note="getCurrentNote" />
   <NoteEditor v-if="renderMarkdown" :currentNote="currentNote" />
 </template>
 
@@ -100,7 +100,39 @@ export default {
     getCurrentNote(note) {
       this.currentNote = note;
       this.renderMarkdown = true;
-    }
+    },
+    async addNewNote(category, newNote, noteTag) {
+
+      if (!newNote.noteTitle) {
+        alert("Add a title for this note");
+        return;
+      }
+
+      noteTag = noteTag.split(/(?<=^\S+)\s/);
+      const newTag = {
+        tagName: noteTag[0],
+        tagColor: noteTag[1],
+      };
+
+      newNote.noteTags = [newTag];
+
+      const newCategory = {
+        ...category,
+        notes: [...category.notes, newNote],
+      };
+
+      const res = await fetch(`http://localhost:5000/category/${category.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newCategory),
+      });
+
+      const data = await res.json();
+
+      this.selectedCategory = data;
+    },
   },
   async created() {
     this.categories = await this.getCategories();

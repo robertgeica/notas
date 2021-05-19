@@ -4,7 +4,45 @@
 
     <div class="note-actions">
       <input type="text" />
-      <button>Add note</button>
+      <button @click="toggleNoteModal()">Add note</button>
+    </div>
+
+    <div v-if="showNoteModal">
+      <Modal @close="toggleNoteModal">
+        <template v-slot:actions>
+          <input
+            type="text"
+            v-model="newNote.noteTitle"
+            class="input"
+            placeholder="Note title"
+          />
+          <input
+            type="text"
+            v-model="newNote.noteBody"
+            class="input"
+            placeholder="Note Body"
+          />
+
+          <div>
+            <select name="tags" v-model="noteTag">
+              <option v-for="tag in tags">
+                {{ tag.tagName }} {{ tag.tagColor }}
+              </option>
+            </select>
+          </div>
+
+          <button
+            @click="
+              $emit('add-note', selectedCategory, newNote, noteTag)
+              toggleNoteModal();
+            "
+          >
+            Add note
+          </button>
+        </template>
+
+        <p>Add new note</p>
+      </Modal>
     </div>
 
     <div
@@ -29,13 +67,26 @@
 </template>
 
 <script>
+import Modal from "../components/Modal";
+
 export default {
   name: "Notes",
-  props: ["selectedCategory"],
+  props: ["selectedCategory", "tags"],
+  components: { Modal },
   data() {
-    return {};
+    return {
+      showNoteModal: false,
+      newNote: {},
+      noteTag: {},
+    };
   },
   methods: {
+    toggleNoteModal() {
+      if (this.showNoteModal) this.newNote = {};
+      this.showNoteModal = !this.showNoteModal;
+    },
+
+    
   },
 };
 </script>

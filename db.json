@@ -31,6 +31,26 @@
               "tagColor": "#2980b9"
             }
           ]
+        },
+        {
+          "noteTitle": "dsasd",
+          "noteBody": "dsadas",
+          "noteTags": [
+            {
+              "tagName": "javascript",
+              "tagColor": "yellow"
+            }
+          ]
+        },
+        {
+          "noteTitle": "ddd",
+          "noteBody": "dsadas",
+          "noteTags": [
+            {
+              "tagName": "react",
+              "tagColor": "lightblue"
+            }
+          ]
         }
       ]
     },
@@ -48,6 +68,30 @@
             },
             {
               "tagName": "framework",
+              "tagColor": "#27ae60"
+            }
+          ]
+        },
+        {
+          "noteTitle": "Options API",
+          "noteBody": "test"
+        },
+        {
+          "noteTitle": "Directives",
+          "noteBody": "More about directives",
+          "noteTags": [
+            {
+              "tagName": "vue",
+              "tagColor": "green"
+            }
+          ]
+        },
+        {
+          "noteTitle": "sda",
+          "noteBody": "das",
+          "noteTags": [
+            {
+              "tagName": "programming",
               "tagColor": "#27ae60"
             }
           ]
@@ -93,6 +137,11 @@
       "categoryName": "dasdas",
       "notes": [],
       "id": 9
+    },
+    {
+      "categoryName": "categ",
+      "notes": [],
+      "id": 10
     }
   ],
   "tags": [
@@ -130,6 +179,11 @@
       "tagName": "java",
       "tagColor": "black",
       "id": 6
+    },
+    {
+      "tagName": "test tag",
+      "tagColor": "red",
+      "id": 7
     }
   ]
 }
