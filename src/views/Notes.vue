@@ -1,8 +1,15 @@
 <template>
   <div class="sidebar">
-    <h3>{{ selectedCategory.categoryName }}</h3>
 
-    <div class="note-actions">
+    <div v-if="selectedCategory.categoryName" class="note-actions">
+      <h3>{{ selectedCategory.categoryName }}</h3>
+      <button 
+        class="button" 
+        @click="$emit('delete-category', selectedCategory.id)"
+      >Delete category</button>
+    </div>
+
+    <div v-if="selectedCategory.categoryName" class="note-actions">
       <input type="text" />
       <button @click="toggleNoteModal()">Add note</button>
     </div>
@@ -85,8 +92,6 @@ export default {
       if (this.showNoteModal) this.newNote = {};
       this.showNoteModal = !this.showNoteModal;
     },
-
-    
   },
 };
 </script>
@@ -99,6 +104,7 @@ export default {
   width: 20em;
   height: 100%;
   background-color: #f5f7f8;
+  overflow-y: auto;
 
   .note-actions {
     display: flex;

@@ -1,9 +1,7 @@
 <template>
   <div id="editor">
-    <p>
 
-    {{this.currentNote.noteBody}}
-    </p>
+    <input class="title" type="text" :value="this.currentNote.noteTitle">
     <textarea :value="this.currentNote.noteBody"></textarea>
   </div>
 </template>
@@ -19,11 +17,25 @@ export default {
 </script>
 
 <style>
+
 #editor {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   height: 100%;
   width: 70%;
   color: #333;
+}
+
+.title {
+  justify-content: left;
+  padding-left: .5em;
+  font-size: 16px; 
+  background-color: #fafafa;
+  font-weight: 600;
+  border-radius: 0;
+  border-bottom: 1px solid grey;
+  outline: none;
 }
 
 textarea {

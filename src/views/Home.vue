@@ -11,6 +11,7 @@
     :tags="tags"
     @add-note="addNewNote"
     @get-note="getCurrentNote"
+    @delete-category="deleteCategory"
   />
   <NoteEditor v-if="renderMarkdown" :currentNote="currentNote" />
 </template>
@@ -138,6 +139,20 @@ export default {
       const allCategories = await this.getCategories();
       this.categories = allCategories;
     },
+    async deleteCategory(id) {
+      const res = await fetch(`http://localhost:5000/category/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+      const data = await res.json();
+      
+      
+      this.selectedCategory = {};
+      const allCategories = await this.getCategories();
+      this.categories = allCategories;
+    }
   },
   async created() {
     this.categories = await this.getCategories();
