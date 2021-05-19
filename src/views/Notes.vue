@@ -1,16 +1,22 @@
 <template>
   <div class="sidebar">
-
     <div v-if="selectedCategory.categoryName" class="note-actions">
       <h3>{{ selectedCategory.categoryName }}</h3>
-      <button 
-        class="button" 
+      <button
+        class="button"
         @click="$emit('delete-category', selectedCategory.id)"
-      >Delete category</button>
+      >
+        Delete category
+      </button>
     </div>
 
     <div v-if="selectedCategory.categoryName" class="note-actions">
-      <input type="text" />
+      <input
+        type="text"
+        placeholder="search"
+        v-model="search"
+        @keyup="searchNote"
+      />
       <button @click="toggleNoteModal()">Add note</button>
     </div>
 
@@ -40,7 +46,7 @@
 
           <button
             @click="
-              $emit('add-note', selectedCategory, newNote, noteTag)
+              $emit('add-note', selectedCategory, newNote, noteTag);
               toggleNoteModal();
             "
           >
@@ -54,7 +60,7 @@
 
     <div
       :key="note"
-      v-for="note in selectedCategory.notes"
+      v-for="note in notes || selectedCategory.notes"
       @click="$emit('get-note', note)"
       class="note"
     >
@@ -85,12 +91,29 @@ export default {
       showNoteModal: false,
       newNote: {},
       noteTag: {},
+      search: "",
+      notes: [],
     };
+  },
+  mounted() {
+    this.notes = this.selectedCategory.notes;
   },
   methods: {
     toggleNoteModal() {
       if (this.showNoteModal) this.newNote = {};
       this.showNoteModal = !this.showNoteModal;
+    },
+
+    searchNote() {
+      this.notes = this.selectedCategory.notes;
+      let matchingSearch = [];
+      this.selectedCategory.notes.forEach((note) => {
+        if (note.noteTitle.toLowerCase().includes(this.search.toLowerCase())) {
+          matchingSearch.push(note);
+        }
+      });
+
+      this.notes = matchingSearch;
     },
   },
 };
