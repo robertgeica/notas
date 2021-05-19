@@ -67,7 +67,11 @@
         }"
       >
         {{ tag.tagName }}
+
       </h5>
+      
+      <span @click="$emit('delete-tag', tag.id)"><i class="fas fa-trash-alt"></i></span>
+
     </div>
   </div>
 </template>

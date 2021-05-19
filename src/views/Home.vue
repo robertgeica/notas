@@ -5,6 +5,7 @@
     @get-category="getSelectedCategory"
     @add-category="addNewCategory"
     @add-tag="addNewTag"
+    @delete-tag="deleteTag"
   />
   <Notes
     :selectedCategory="selectedCategory"
@@ -146,12 +147,22 @@ export default {
           "Content-type": "application/json"
         }
       });
-      const data = await res.json();
-      
       
       this.selectedCategory = {};
       const allCategories = await this.getCategories();
       this.categories = allCategories;
+    },
+
+    async deleteTag(id) {
+      const res = await fetch(`http://localhost:5000/tags/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+
+      const allTags = await this.getTags();
+      this.tags = allTags;
     }
   },
   async created() {

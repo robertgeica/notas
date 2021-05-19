@@ -247,19 +247,9 @@
       "id": 4
     },
     {
-      "tagName": "z",
-      "tagColor": "grey",
-      "id": 5
-    },
-    {
       "tagName": "java",
       "tagColor": "black",
       "id": 6
-    },
-    {
-      "tagName": "test tag",
-      "tagColor": "red",
-      "id": 7
     }
   ]
 }
