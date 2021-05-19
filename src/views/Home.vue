@@ -6,7 +6,12 @@
     @add-category="addNewCategory"
     @add-tag="addNewTag"
   />
-  <Notes :selectedCategory="selectedCategory" :tags="tags" @add-note="addNewNote" @get-note="getCurrentNote" />
+  <Notes
+    :selectedCategory="selectedCategory"
+    :tags="tags"
+    @add-note="addNewNote"
+    @get-note="getCurrentNote"
+  />
   <NoteEditor v-if="renderMarkdown" :currentNote="currentNote" />
 </template>
 
@@ -29,7 +34,7 @@ export default {
       tags: [],
       selectedCategory: {},
       currentNote: {},
-      renderMarkdown: false
+      renderMarkdown: false,
     };
   },
   methods: {
@@ -102,7 +107,6 @@ export default {
       this.renderMarkdown = true;
     },
     async addNewNote(category, newNote, noteTag) {
-
       if (!newNote.noteTitle) {
         alert("Add a title for this note");
         return;
