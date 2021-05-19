@@ -1,5 +1,5 @@
 <template>
-  <div id="editor">
+  <div v-if="this.currentNote.noteTitle" id="editor">
     <div class="editor-header">
       <input class="title" type="text" :value="this.currentNote.noteTitle">
 

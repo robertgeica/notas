@@ -134,16 +134,6 @@
       "categoryName": "z",
       "notes": [
         {
-          "noteTitle": "ddd",
-          "noteBody": "ddd",
-          "noteTags": [
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
-            }
-          ]
-        },
-        {
           "noteTitle": "x",
           "noteBody": "x",
           "noteTags": [
@@ -158,43 +148,12 @@
     },
     {
       "categoryName": "test 2",
-      "notes": [
-        {
-          "noteTitle": "asd",
-          "noteBody": "das",
-          "noteTags": [
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
-            }
-          ]
-        }
-      ],
+      "notes": [],
       "id": 5
     },
     {
       "categoryName": "test 3",
       "notes": [
-        {
-          "noteTitle": "t2",
-          "noteBody": "t2",
-          "noteTags": [
-            {
-              "tagName": "react",
-              "tagColor": "lightblue"
-            }
-          ]
-        },
-        {
-          "noteTitle": "dasdas",
-          "noteBody": "gwe",
-          "noteTags": [
-            {
-              "tagName": "javascript",
-              "tagColor": "yellow"
-            }
-          ]
-        },
         {
           "noteTitle": ";lkjhgf",
           "noteBody": "hjkl;'",
