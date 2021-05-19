@@ -1,21 +1,24 @@
 <template>
   <div v-if="this.currentNote.noteTitle" id="editor">
     <div class="editor-header">
-      <input class="title" type="text" :value="this.currentNote.noteTitle">
+      <input class="title" type="text" v-model="this.currentNote.noteTitle" >
+      
+      <span  @click="$emit('edit-note', selectedCategory)"><i class="far fa-save"></i></span>
 
-      <span @click="$emit('delete-note', this.currentNote.noteTitle)"><i class="fas fa-trash-alt"></i></span>
+      <span @click="$emit('delete-note', this.currentNote.noteTitle)"><i class="far fa-trash-alt"></i></span>
+
     </div>
-    <textarea :value="this.currentNote.noteBody"></textarea>
+    <textarea v-model="this.currentNote.noteBody"></textarea>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["currentNote"],
+  props: ["currentNote", 'selectedCategory'],
   data() {
     return {
     };
-  },
+  }
 };
 </script>
 

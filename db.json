@@ -6,21 +6,7 @@
       "notes": [
         {
           "noteTitle": "ES6",
-          "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
-          "noteTags": [
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
-            },
-            {
-              "tagName": "web",
-              "tagColor": "#2980b9"
-            }
-          ]
-        },
-        {
-          "noteTitle": "OOP",
-          "noteBody": "# Consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
+          "noteBody": "ECMAScript 6 was the second major revision to JavaScript.\n\nECMAScript 6 is also known as ES6 and ECMAScript 2015.\n\nThis chapter describes the most important features of ES6.",
           "noteTags": [
             {
               "tagName": "programming",

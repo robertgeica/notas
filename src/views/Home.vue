@@ -15,9 +15,10 @@
     @delete-category="deleteCategory"
   />
   <NoteEditor
-    v-if="renderMarkdown"
+    :selectedCategory="selectedCategory"
     :currentNote="currentNote"
     @delete-note="deleteNote"
+    @edit-note="editNote"
   />
 </template>
 
@@ -109,6 +110,7 @@ export default {
       this.tags = [...this.tags, data];
     },
     getCurrentNote(note) {
+
       this.currentNote = note;
       this.renderMarkdown = true;
     },
@@ -192,6 +194,24 @@ export default {
       const allCategories = await this.getCategories();
       this.categories = allCategories;
     },
+
+    async editNote(category) {
+      // console.log(category, noteTitle, noteBody, oldNoteTitle);
+
+      // console.log(category)
+      const res = await fetch(`http://localhost:5000/category/${category.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(category),
+      });
+
+      
+      // find note in category - ??
+      // edit title and body
+      // push updated category to db
+    }
   },
   async created() {
     this.categories = await this.getCategories();
