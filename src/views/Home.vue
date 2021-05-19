@@ -14,7 +14,11 @@
     @get-note="getCurrentNote"
     @delete-category="deleteCategory"
   />
-  <NoteEditor v-if="renderMarkdown" :currentNote="currentNote" />
+  <NoteEditor
+    v-if="renderMarkdown"
+    :currentNote="currentNote"
+    @delete-note="deleteNote"
+  />
 </template>
 
 <script>
@@ -144,10 +148,10 @@ export default {
       const res = await fetch(`http://localhost:5000/category/${id}`, {
         method: "DELETE",
         headers: {
-          "Content-type": "application/json"
-        }
+          "Content-type": "application/json",
+        },
       });
-      
+
       this.selectedCategory = {};
       const allCategories = await this.getCategories();
       this.categories = allCategories;
@@ -157,13 +161,37 @@ export default {
       const res = await fetch(`http://localhost:5000/tags/${id}`, {
         method: "DELETE",
         headers: {
-          "Content-type": "application/json"
-        }
+          "Content-type": "application/json",
+        },
       });
 
       const allTags = await this.getTags();
       this.tags = allTags;
-    }
+    },
+
+    async deleteNote(noteTitle) {
+      const categoryId = this.selectedCategory.id;
+      const newCategory = {
+        ...this.selectedCategory,
+        notes: this.selectedCategory.notes.filter(
+          (note) => note.noteTitle !== noteTitle
+        ),
+      };
+
+      const res = await fetch(`http://localhost:5000/category/${categoryId}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newCategory),
+      });
+
+      this.selectedCategory = newCategory;
+      this.currentNote = {};
+
+      const allCategories = await this.getCategories();
+      this.categories = allCategories;
+    },
   },
   async created() {
     this.categories = await this.getCategories();

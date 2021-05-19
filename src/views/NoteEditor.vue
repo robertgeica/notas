@@ -1,7 +1,10 @@
 <template>
   <div id="editor">
+    <div class="editor-header">
+      <input class="title" type="text" :value="this.currentNote.noteTitle">
 
-    <input class="title" type="text" :value="this.currentNote.noteTitle">
+      <span @click="$emit('delete-note', this.currentNote.noteTitle)"><i class="fas fa-trash-alt"></i></span>
+    </div>
     <textarea :value="this.currentNote.noteBody"></textarea>
   </div>
 </template>
@@ -16,7 +19,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 
 #editor {
   display: flex;
@@ -26,6 +29,21 @@ export default {
   width: 70%;
   color: #333;
 }
+
+.editor-header {
+  display: flex;
+  background-color: #fafafa;
+
+  input {
+    width: 100%;
+  }
+
+  span {
+    margin: auto 1em;
+    cursor: pointer;
+  }
+}
+
 
 .title {
   justify-content: left;
