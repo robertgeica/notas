@@ -6,7 +6,7 @@
       "notes": [
         {
           "noteTitle": "ES6",
-          "noteBody": "ECMAScript 6 was the second major revision to JavaScript.\n\nECMAScript 6 is also known as ES6 and ECMAScript 2015.\n\nThis chapter describes the most important features of ES6.",
+          "noteBody": "ECMAScript 6 was the second major revision to JavaScript.\n\nECMAScript 6 is also known as ES6 and ECMAScript 2015.\n\nThis chapter describes the most important features of ES6.\n\n\n-----\n- asdjas\n- dasdsa\n- dasdasgas",
           "noteTags": [
             {
               "tagName": "programming",
@@ -19,8 +19,8 @@
           ]
         },
         {
-          "noteTitle": "dsasd",
-          "noteBody": "dsadas",
+          "noteTitle": "test",
+          "noteBody": "test",
           "noteTags": [
             {
               "tagName": "javascript",
@@ -29,8 +29,8 @@
           ]
         },
         {
-          "noteTitle": "ddd",
-          "noteBody": "dsadas",
+          "noteTitle": "test2",
+          "noteBody": "test2",
           "noteTags": [
             {
               "tagName": "react",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "categoryName": "1",
+      "categoryName": "React",
       "notes": [
         {
           "noteTitle": "1",
@@ -99,59 +99,6 @@
         }
       ],
       "id": 2
-    },
-    {
-      "categoryName": "test",
-      "notes": [
-        {
-          "noteTitle": "d",
-          "noteBody": "d",
-          "noteTags": [
-            {
-              "tagName": "web",
-              "tagColor": "#2980b9"
-            }
-          ]
-        }
-      ],
-      "id": 3
-    },
-    {
-      "categoryName": "z",
-      "notes": [
-        {
-          "noteTitle": "x",
-          "noteBody": "x",
-          "noteTags": [
-            {
-              "tagName": "react",
-              "tagColor": "lightblue"
-            }
-          ]
-        }
-      ],
-      "id": 4
-    },
-    {
-      "categoryName": "test 2",
-      "notes": [],
-      "id": 5
-    },
-    {
-      "categoryName": "test 3",
-      "notes": [
-        {
-          "noteTitle": ";lkjhgf",
-          "noteBody": "hjkl;'",
-          "noteTags": [
-            {
-              "tagName": "javascript",
-              "tagColor": "yellow"
-            }
-          ]
-        }
-      ],
-      "id": 6
     },
     {
       "categoryName": "test",

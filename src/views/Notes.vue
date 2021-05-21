@@ -8,6 +8,34 @@
       >
         Delete category
       </button>
+
+      <button class="button" @click="toggleEditCategoryModal()">
+        Edit category
+      </button>
+
+      <div v-if="editCategoryModal">
+        <Modal @close="toggleEditCategoryModal">
+          <template v-slot:actions>
+            <input
+              type="text"
+              v-model="selectedCategory.categoryName"
+              class="input"
+              placeholder="Category title"
+            />
+
+            <button
+              @click="
+                $emit('edit-category', selectedCategory);
+                toggleEditCategoryModal();
+              "
+            >
+              Edit note
+            </button>
+          </template>
+
+          <p>Edit note</p>
+        </Modal>
+      </div>
     </div>
 
     <div v-if="selectedCategory.categoryName" class="note-actions">
@@ -89,6 +117,7 @@ export default {
   data() {
     return {
       showNoteModal: false,
+      editCategoryModal: false,
       newNote: {},
       noteTag: {},
       search: "",
@@ -99,6 +128,9 @@ export default {
     this.notes = this.selectedCategory.notes;
   },
   methods: {
+    toggleEditCategoryModal() {
+      this.editCategoryModal = !this.editCategoryModal;
+    },
     toggleNoteModal() {
       if (this.showNoteModal) this.newNote = {};
       this.showNoteModal = !this.showNoteModal;
