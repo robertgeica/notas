@@ -17,6 +17,10 @@
               "tagColor": "#2980b9"
             },
             {
+              "tagName": "javascript",
+              "tagColor": "yellow"
+            },
+            {
               "tagName": "react",
               "tagColor": "lightblue"
             }
@@ -29,6 +33,10 @@
             {
               "tagName": "javascript",
               "tagColor": "yellow"
+            },
+            {
+              "tagName": "vue",
+              "tagColor": "green"
             }
           ]
         },
@@ -73,6 +81,10 @@
             {
               "tagName": "vue",
               "tagColor": "green"
+            },
+            {
+              "tagName": "javascript",
+              "tagColor": "yellow"
             }
           ]
         },
@@ -98,6 +110,10 @@
             {
               "tagName": "web",
               "tagColor": "#2980b9"
+            },
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
             }
           ]
         }

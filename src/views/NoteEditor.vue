@@ -21,6 +21,14 @@
           :style="{
             background: `${tag.tagColor} `,
           }"
+          @dblclick="
+            $emit(
+              'delete-tag-from-note',
+              this.currentNote,
+              this.selectedCategory,
+              tag
+            )
+          "
         >
           {{ tag.tagName }}
         </span>
@@ -28,13 +36,28 @@
 
       <div class="actions">
         <select name="tags" v-model="noteTag">
-          <option :key="tag.tagName" v-for="tag in tags">
+          <option
+            :key="tag.tagName"
+            v-for="tag in tags"
+            :style="{
+              background: `${tag.tagColor} `,
+            }"
+          >
             {{ tag.tagName }} {{ tag.tagColor }}
           </option>
         </select>
 
-        <span>delete</span>
-        <span @click="addTagToNote">add</span>
+        <span
+          @click="
+            $emit(
+              'add-tag-to-note',
+              this.currentNote,
+              this.selectedCategory,
+              this.noteTag
+            )
+          "
+          >add</span
+        >
       </div>
     </div>
   </div>
@@ -48,37 +71,7 @@ export default {
       noteTag: {},
     };
   },
-  methods: {
-    async addTagToNote() {
-      const tag = this.noteTag.split(/(?<=^\S+)\s/);
-      const newTag = {
-        tagName: tag[0],
-        tagColor: tag[1],
-      };
-
-      const newNoteObj = {
-        ...this.currentNote,
-        noteTags: [...this.currentNote.noteTags, newTag],
-      };
-
-      const objIndex = this.selectedCategory.notes.findIndex(
-        (obj) => obj.noteTitle === this.currentNote.noteTitle
-      );
-
-      this.selectedCategory.notes[objIndex] = newNoteObj;
-
-      await fetch(
-        `http://localhost:5000/category/${this.selectedCategory.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(this.selectedCategory),
-        }
-      );
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -161,6 +154,17 @@ textarea {
       cursor: pointer;
       color: #000;
       margin: 0.5em;
+    }
+
+    select {
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0.5em;
+
+      option {
+        font-size: 16px;
+      }
     }
   }
 }

@@ -21,6 +21,8 @@
     :tags="tags"
     @delete-note="deleteNote"
     @edit-note="editNote"
+    @add-tag-to-note="addTagToNote"
+    @delete-tag-from-note="deleteTagNote"
   />
 </template>
 
@@ -112,7 +114,6 @@ export default {
       this.tags = [...this.tags, data];
     },
     getCurrentNote(note) {
-
       this.currentNote = note;
       this.renderMarkdown = true;
     },
@@ -205,18 +206,84 @@ export default {
         },
         body: JSON.stringify(category),
       });
-
     },
 
     async editCategory(category) {
       const res = await fetch(`http://localhost:5000/category/${category.id}`, {
         method: "PUT",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
         },
-        body: JSON.stringify(category)
-      })
-    }
+        body: JSON.stringify(category),
+      });
+    },
+
+    async addTagToNote(note, category, tag) {
+      tag = tag.split(/(?<=^\S+)\s/);
+      const newTag = {
+        tagName: tag[0],
+        tagColor: tag[1],
+      };
+
+      let tagAlreadyAdded = false;
+      note.noteTags.forEach((tag) => {
+        if (tag.tagName === newTag.tagName) {
+          tagAlreadyAdded = true;
+        }
+      });
+
+      if (!tagAlreadyAdded) {
+        const newNoteObj = {
+          ...note,
+          noteTags: [...note.noteTags, newTag],
+        };
+
+        const objIndex = category.notes.findIndex(
+          (obj) => obj.noteTitle === note.noteTitle
+        );
+
+        category.notes[objIndex] = newNoteObj;
+        console.log(category.notes[objIndex]);
+
+        await fetch(`http://localhost:5000/category/${category.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(category),
+        });
+
+        this.selectedCategory = category;
+        this.currentNote = newNoteObj;
+      }
+    },
+    async deleteTagNote(note, category, tag) {
+      // console.log(note, category, tag)
+      const newTags = note.noteTags.filter(
+        (tagEl) => tagEl.tagName !== tag.tagName
+      );
+      const newNoteObj = {
+        ...note,
+        noteTags: newTags,
+      };
+
+      const objIndex = category.notes.findIndex(
+        (obj) => obj.noteTitle === note.noteTitle
+      );
+
+      category.notes[objIndex] = newNoteObj;
+
+      await fetch(`http://localhost:5000/category/${category.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(category),
+      });
+
+      this.selectedCategory = category;
+      this.currentNote = newNoteObj;
+    },
   },
   async created() {
     this.categories = await this.getCategories();

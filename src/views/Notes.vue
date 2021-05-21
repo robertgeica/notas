@@ -93,6 +93,8 @@
       class="note"
     >
       <h4>{{ note.noteTitle }}</h4>
+      <div class="tags">
+
       <span
         :key="tag"
         v-for="tag in note.noteTags"
@@ -102,6 +104,7 @@
       >
         {{ tag.tagName }}
       </span>
+      </div>
       <p>{{ note.noteBody.substr(0, 100) }} ...</p>
     </div>
   </div>
@@ -193,8 +196,13 @@ export default {
       background-color: #b6bec2;
     }
 
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
     span {
-      margin: 0 10px 0 0;
+      margin: 10px 10px 0 0;
       padding: 5px;
       border-radius: 5px;
       color: #fff;
