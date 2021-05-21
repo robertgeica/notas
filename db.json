@@ -2,7 +2,7 @@
   "category": [
     {
       "id": 0,
-      "categoryName": "Javascript",
+      "categoryName": "JavaScript",
       "notes": [
         {
           "noteTitle": "ES6",
@@ -15,6 +15,10 @@
             {
               "tagName": "web",
               "tagColor": "#2980b9"
+            },
+            {
+              "tagName": "react",
+              "tagColor": "lightblue"
             }
           ]
         },

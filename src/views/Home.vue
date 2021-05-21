@@ -18,6 +18,7 @@
   <NoteEditor
     :selectedCategory="selectedCategory"
     :currentNote="currentNote"
+    :tags="tags"
     @delete-note="deleteNote"
     @edit-note="editNote"
   />

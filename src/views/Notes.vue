@@ -66,7 +66,7 @@
 
           <div>
             <select name="tags" v-model="noteTag">
-              <option v-for="tag in tags">
+              <option :key="tag.tagName" v-for="tag in tags">
                 {{ tag.tagName }} {{ tag.tagColor }}
               </option>
             </select>
