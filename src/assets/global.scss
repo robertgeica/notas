@@ -19,3 +19,25 @@ button {
   cursor: pointer;
   margin: 0 0 15px;
 }
+
+.toggle-arrow {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 1em;
+  align-self: flex-end;
+}
+.toggle-arrow:hover {
+  color: grey;
+}
+
+.toggle-sidebar-on {
+  display: flex;
+  align-items: flex-end;
+  background-color: #ecf0f1;
+}
+
+.toggle-notesbar-on {
+  display: flex;
+  align-items: flex-end;
+  background-color: #f5f7f8;
+}

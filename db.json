@@ -23,6 +23,14 @@
             {
               "tagName": "react",
               "tagColor": "lightblue"
+            },
+            {
+              "tagName": "vue",
+              "tagColor": "green"
+            },
+            {
+              "tagName": "java",
+              "tagColor": "black"
             }
           ]
         },
@@ -37,6 +45,14 @@
             {
               "tagName": "vue",
               "tagColor": "green"
+            },
+            {
+              "tagName": "test",
+              "tagColor": "lightgrey"
+            },
+            {
+              "tagName": "react",
+              "tagColor": "lightblue"
             }
           ]
         },
@@ -156,6 +172,19 @@
       "tagName": "java",
       "tagColor": "black",
       "id": 6
+    },
+    {
+      "tagName": "eqwewq",
+      "tagColor": "ewq",
+      "id": 9
+    },
+    {
+      "tagName": "ewqeqwqw",
+      "id": 10
+    },
+    {
+      "tagName": "rqweqw",
+      "id": 11
     }
   ]
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" v-if="showSidebar">
     <div v-if="selectedCategory.categoryName" class="note-actions">
       <h3>{{ selectedCategory.categoryName }}</h3>
       <button
@@ -94,19 +94,22 @@
     >
       <h4>{{ note.noteTitle }}</h4>
       <div class="tags">
-
-      <span
-        :key="tag"
-        v-for="tag in note.noteTags"
-        :style="{
-          background: `${tag.tagColor} `,
-        }"
-      >
-        {{ tag.tagName }}
-      </span>
+        <span
+          :key="tag"
+          v-for="tag in note.noteTags"
+          :style="{
+            background: `${tag.tagColor} `,
+          }"
+        >
+          {{ tag.tagName }}
+        </span>
       </div>
       <p>{{ note.noteBody.substr(0, 100) }} ...</p>
     </div>
+    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+  </div>
+  <div class="toggle-notesbar-on" v-else>
+    <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
   </div>
 </template>
 
@@ -125,6 +128,7 @@ export default {
       noteTag: {},
       search: "",
       notes: [],
+      showSidebar: true,
     };
   },
   mounted() {
@@ -149,6 +153,9 @@ export default {
       });
 
       this.notes = matchingSearch;
+    },
+    toggleSidebar() {
+      this.showSidebar = !this.showSidebar;
     },
   },
 };

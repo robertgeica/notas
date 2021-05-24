@@ -35,6 +35,7 @@
       </div>
 
       <div class="actions">
+        <div></div>
         <select name="tags" v-model="noteTag">
           <option
             :key="tag.tagName"
@@ -56,7 +57,7 @@
               this.noteTag
             )
           "
-          >add</span
+          >+</span
         >
       </div>
     </div>
@@ -135,6 +136,7 @@ textarea {
 
   .tags {
     display: flex;
+    flex-wrap: wrap;
     span {
       padding: 5px 10px;
       border-radius: 5px;
@@ -153,14 +155,16 @@ textarea {
       background-color: grey;
       cursor: pointer;
       color: #000;
-      margin: 0.5em;
+      margin: auto 0.5em;
+      height: 1.5em;
     }
 
     select {
       padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
-      margin: 0.5em;
+      margin: auto 0.5em;
+      height: 2.5em;
 
       option {
         font-size: 16px;

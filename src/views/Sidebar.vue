@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" v-if="showSidebar">
     <h3>Notes-App</h3>
 
     <div v-if="showModal">
@@ -23,8 +23,18 @@
     <div v-if="showTagModal">
       <Modal @close="toggleTagModal">
         <template v-slot:actions>
-          <input type="text" v-model="newTagObj.tagName" class="input" placeholder="Tag name"/>
-          <input type="text" v-model="newTagObj.tagColor" class="input" placeholder="Tag color" />
+          <input
+            type="text"
+            v-model="newTagObj.tagName"
+            class="input"
+            placeholder="Tag name"
+          />
+          <input
+            type="text"
+            v-model="newTagObj.tagColor"
+            class="input"
+            placeholder="Tag color"
+          />
 
           <button
             @click="
@@ -67,12 +77,17 @@
         }"
       >
         {{ tag.tagName }}
-
       </h5>
-      
-      <span @click="$emit('delete-tag', tag.id)"><i class="fas fa-trash-alt"></i></span>
 
+      <span @click="$emit('delete-tag', tag.id)"
+        ><i class="fas fa-trash-alt"></i
+      ></span>
     </div>
+
+    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+  </div>
+  <div class="toggle-sidebar-on" v-else>
+    <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
   </div>
 </template>
 
@@ -88,22 +103,28 @@ export default {
       showTagModal: false,
       newCategoryName: "",
       newTagObj: {},
+      showSidebar: true,
     };
   },
   methods: {
     toggleModal() {
-      if(this.showModal) this.newCategoryName = '';
+      if (this.showModal) this.newCategoryName = "";
       this.showModal = !this.showModal;
     },
     toggleTagModal() {
-      if(this.showTagModal) this.newTagObj = {};
+      if (this.showTagModal) this.newTagObj = {};
       this.showTagModal = !this.showTagModal;
+    },
+    toggleSidebar() {
+      this.showSidebar = !this.showSidebar;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+
 .sidebar {
   display: flex;
   flex-direction: column;
