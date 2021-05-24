@@ -18,6 +18,15 @@ input, button {
 button {
   cursor: pointer;
   margin: 0 0 15px;
+  background-color: #EFEFEF;
+}
+
+button:hover {
+  background-color: #e0dfdf;
+}
+
+.category:hover, .add:hover {
+  color: #797979;
 }
 
 .toggle-arrow {

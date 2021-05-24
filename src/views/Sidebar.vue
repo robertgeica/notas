@@ -52,7 +52,7 @@
 
     <div class="categories-actions">
       <h4>Categories</h4>
-      <span @click="toggleModal">+</span>
+      <span class="add" @click="toggleModal">+</span>
     </div>
 
     <div
@@ -67,7 +67,7 @@
 
     <div class="tags-actions">
       <h4>Tags</h4>
-      <span @click="toggleTagModal">+</span>
+      <span class="add" @click="toggleTagModal">+</span>
     </div>
 
     <div class="tag" :key="tag.id" v-for="tag in tags">

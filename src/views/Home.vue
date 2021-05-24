@@ -132,13 +132,18 @@ export default {
         return;
       }
 
-      noteTag = noteTag.split(/(?<=^\S+)\s/);
-      const newTag = {
-        tagName: noteTag[0],
-        tagColor: noteTag[1],
-      };
+      console.log(noteTag)
+      if (Object.keys(noteTag).length === 0) {
+        newNote.noteTags = [];
+      } else {
+        noteTag = noteTag.split(/(?<=^\S+)\s/);
+        const newTag = {
+          tagName: noteTag[0],
+          tagColor: noteTag[1],
+        };
 
-      newNote.noteTags = [newTag];
+        newNote.noteTags = [newTag];
+      }
 
       const newCategory = {
         ...category,
@@ -264,12 +269,15 @@ export default {
         tagColor: tag[1],
       };
 
+      console.log(note);
       let tagAlreadyAdded = false;
-      note.noteTags.forEach((tag) => {
-        if (tag.tagName === newTag.tagName) {
-          tagAlreadyAdded = true;
-        }
-      });
+      if (note.noteTags.length !== undefined) {
+        note.noteTags.forEach((tag) => {
+          if (tag.tagName === newTag.tagName) {
+            tagAlreadyAdded = true;
+          }
+        });
+      }
 
       if (!tagAlreadyAdded) {
         const newNoteObj = {

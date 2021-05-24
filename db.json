@@ -1,80 +1,6 @@
 {
   "category": [
     {
-      "id": 0,
-      "categoryName": "JavaScript",
-      "notes": [
-        {
-          "noteTitle": "ES6",
-          "noteBody": "ECMAScript 6 was the second major revision to JavaScript.\n\nECMAScript 6 is also known as ES6 and ECMAScript 2015.\n\nThis chapter describes the most important features of ES6.\n\n\n-----\n- asdjas\n- dasdsa\n- dasdasgassss",
-          "noteTags": [
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
-            },
-            {
-              "tagName": "web",
-              "tagColor": "#2980b9"
-            },
-            {
-              "tagName": "javascript",
-              "tagColor": "yellow"
-            },
-            {
-              "tagName": "react",
-              "tagColor": "lightblue"
-            },
-            {
-              "tagName": "vue",
-              "tagColor": "green"
-            },
-            {
-              "tagName": "java",
-              "tagColor": "black"
-            }
-          ]
-        },
-        {
-          "noteTitle": "test",
-          "noteBody": "test",
-          "noteTags": [
-            {
-              "tagName": "javascript",
-              "tagColor": "yellow"
-            },
-            {
-              "tagName": "vue",
-              "tagColor": "green"
-            },
-            {
-              "tagName": "test",
-              "tagColor": "lightgrey"
-            }
-          ]
-        },
-        {
-          "noteTitle": "test2",
-          "noteBody": "test2",
-          "noteTags": [
-            {
-              "tagName": "react",
-              "tagColor": "lightblue"
-            }
-          ]
-        },
-        {
-          "noteTitle": "dasdas",
-          "noteBody": "dasdas",
-          "noteTags": [
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": 1,
       "categoryName": "Vue",
       "notes": [
@@ -89,6 +15,10 @@
             {
               "tagName": "framework",
               "tagColor": "#27ae60"
+            },
+            {
+              "tagName": "javascript",
+              "tagColor": "yellow"
             }
           ]
         },
@@ -136,6 +66,16 @@
             {
               "tagName": "programming",
               "tagColor": "#27ae60"
+            }
+          ]
+        },
+        {
+          "noteTitle": "das",
+          "noteBody": "dsa",
+          "noteTags": [
+            {
+              "tagName": "react",
+              "tagColor": "lightblue"
             }
           ]
         }
