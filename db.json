@@ -6,7 +6,7 @@
       "notes": [
         {
           "noteTitle": "ES6",
-          "noteBody": "ECMAScript 6 was the second major revision to JavaScript.\n\nECMAScript 6 is also known as ES6 and ECMAScript 2015.\n\nThis chapter describes the most important features of ES6.\n\n\n-----\n- asdjas\n- dasdsa\n- dasdasgas",
+          "noteBody": "ECMAScript 6 was the second major revision to JavaScript.\n\nECMAScript 6 is also known as ES6 and ECMAScript 2015.\n\nThis chapter describes the most important features of ES6.\n\n\n-----\n- asdjas\n- dasdsa\n- dasdasgassss",
           "noteTags": [
             {
               "tagName": "programming",
@@ -49,10 +49,6 @@
             {
               "tagName": "test",
               "tagColor": "lightgrey"
-            },
-            {
-              "tagName": "react",
-              "tagColor": "lightblue"
             }
           ]
         },
@@ -63,6 +59,16 @@
             {
               "tagName": "react",
               "tagColor": "lightblue"
+            }
+          ]
+        },
+        {
+          "noteTitle": "dasdas",
+          "noteBody": "dasdas",
+          "noteTags": [
+            {
+              "tagName": "programming",
+              "tagColor": "#27ae60"
             }
           ]
         }
@@ -135,11 +141,6 @@
         }
       ],
       "id": 2
-    },
-    {
-      "categoryName": "test",
-      "notes": [],
-      "id": 8
     }
   ],
   "tags": [
@@ -172,19 +173,6 @@
       "tagName": "java",
       "tagColor": "black",
       "id": 6
-    },
-    {
-      "tagName": "eqwewq",
-      "tagColor": "ewq",
-      "id": 9
-    },
-    {
-      "tagName": "ewqeqwqw",
-      "id": 10
-    },
-    {
-      "tagName": "rqweqw",
-      "id": 11
     }
   ]
 }

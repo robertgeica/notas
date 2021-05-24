@@ -52,7 +52,6 @@ export default {
     async getCategories() {
       const res = await fetch("http://localhost:5000/category");
       const data = await res.json();
-
       return data;
     },
 
@@ -93,6 +92,11 @@ export default {
 
       const data = await res.json();
       this.categories = [...this.categories, data];
+      this.$swal.fire({
+        icon: "success",
+        title: `Category ${newCategory.categoryName} was added.`,
+        timer: 500,
+      });
     },
 
     async addNewTag(newTagObj) {
@@ -112,6 +116,11 @@ export default {
 
       const data = await res.json();
       this.tags = [...this.tags, data];
+      this.$swal.fire({
+        icon: "success",
+        title: `Tag ${newTagObj.tagName} was added.`,
+        timer: 500,
+      });
     },
     getCurrentNote(note) {
       this.currentNote = note;
@@ -148,6 +157,11 @@ export default {
       this.selectedCategory = data;
       const allCategories = await this.getCategories();
       this.categories = allCategories;
+      this.$swal.fire({
+        icon: "success",
+        title: `Note ${newNote.noteTitle} was added.`,
+        timer: 500,
+      });
     },
     async deleteCategory(id) {
       const res = await fetch(`http://localhost:5000/category/${id}`, {
@@ -160,6 +174,11 @@ export default {
       this.selectedCategory = {};
       const allCategories = await this.getCategories();
       this.categories = allCategories;
+      this.$swal.fire({
+        icon: "success",
+        title: `Category was deleted.`,
+        timer: 500,
+      });
     },
 
     async deleteTag(id) {
@@ -172,6 +191,11 @@ export default {
 
       const allTags = await this.getTags();
       this.tags = allTags;
+      this.$swal.fire({
+        icon: "success",
+        title: `Tag was deleted.`,
+        timer: 500,
+      });
     },
 
     async deleteNote(noteTitle) {
@@ -196,6 +220,11 @@ export default {
 
       const allCategories = await this.getCategories();
       this.categories = allCategories;
+      this.$swal.fire({
+        icon: "success",
+        title: `Note was deleted.`,
+        timer: 500,
+      });
     },
 
     async editNote(category) {
@@ -206,6 +235,11 @@ export default {
         },
         body: JSON.stringify(category),
       });
+      this.$swal.fire({
+        icon: "success",
+        title: `Note was updated.`,
+        timer: 500,
+      });
     },
 
     async editCategory(category) {
@@ -215,6 +249,11 @@ export default {
           "Content-type": "application/json",
         },
         body: JSON.stringify(category),
+      });
+      this.$swal.fire({
+        icon: "success",
+        title: `Category was updated.`,
+        timer: 500,
       });
     },
 
@@ -256,6 +295,11 @@ export default {
         this.selectedCategory = category;
         this.currentNote = newNoteObj;
       }
+      this.$swal.fire({
+        icon: "success",
+        title: `Tag was added.`,
+        timer: 500,
+      });
     },
     async deleteTagNote(note, category, tag) {
       // console.log(note, category, tag)
@@ -283,6 +327,11 @@ export default {
 
       this.selectedCategory = category;
       this.currentNote = newNoteObj;
+      this.$swal.fire({
+        icon: "success",
+        title: `Tag was deleted.`,
+        timer: 500,
+      });
     },
   },
   async created() {
