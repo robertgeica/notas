@@ -107,7 +107,9 @@ export default {
 
   setup() {
     const useCategoryState = inject("useCategoryState");
+    const useTagState = inject("useTagState");
     const { getCurrentCategory, addNewCategory } = useCategoryState;
+    const { addNewTag } = useTagState;
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
@@ -138,7 +140,7 @@ export default {
       toggleAddTagModal,
 
       newTagObj,
-      
+      addNewTag
     };
   },
 };
