@@ -1,0 +1,52 @@
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
+h5 {
+  margin: 5px 0;
+}
+
+input, button {
+  padding: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  margin: 0 0 15px;
+  background-color: #EFEFEF;
+}
+
+button:hover {
+  background-color: #e0dfdf;
+}
+
+.category:hover, .add:hover {
+  color: #797979;
+}
+
+.toggle-arrow {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 1em;
+  align-self: flex-end;
+}
+.toggle-arrow:hover {
+  color: grey;
+}
+
+.toggle-sidebar-on {
+  display: flex;
+  align-items: flex-end;
+  background-color: #ecf0f1;
+}
+
+.toggle-notesbar-on {
+  display: flex;
+  align-items: flex-end;
+  background-color: #f5f7f8;
+}
