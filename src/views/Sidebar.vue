@@ -42,6 +42,7 @@
             @click="
               addNewTag(newTagObj);
               toggleAddTagModal();
+              newTagObj = {};
             "
           >
             Add tag
@@ -83,7 +84,7 @@
         {{ tag.tagName }}
       </h5>
 
-      <span @click="handleDeleteTag(tag.id)"
+      <span @click="deleteTag(tag.id)"
         ><i class="fas fa-trash-alt"></i
       ></span>
     </div>
@@ -109,7 +110,7 @@ export default {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
     const { getCurrentCategory, addNewCategory } = useCategoryState;
-    const { addNewTag } = useTagState;
+    const { addNewTag, deleteTag } = useTagState;
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
@@ -140,7 +141,8 @@ export default {
       toggleAddTagModal,
 
       newTagObj,
-      addNewTag
+      addNewTag,
+      deleteTag
     };
   },
 };

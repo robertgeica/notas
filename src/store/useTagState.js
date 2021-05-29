@@ -32,6 +32,20 @@ const actions = {
     const data = await res.json();
     state.allTags = [...state.allTags, data];
   },
+  
+  deleteTag: async (id) => {
+    
+    const res = await fetch(`http://localhost:5000/tags/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+
+    state.allTags = await getters.getAllTags();
+    
+  }
+
 };
 
 export default { state: readonly(state), ...getters, ...actions };

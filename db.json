@@ -34,14 +34,9 @@
       "tagColor": "#2980b9"
     },
     {
-      "tagName": "test",
-      "tagColor": "black",
+      "tagName": "mobile",
+      "tagColor": "grey",
       "id": 1
-    },
-    {
-      "tagName": "test2",
-      "tagColor": "green",
-      "id": 2
     }
   ]
 }
