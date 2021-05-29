@@ -100,7 +100,6 @@ export default {
   name: "Sidebar",
   components: { Modal },
   props: ["allCategories", "allTags"],
-  // showAddTagModal, toggleAddTagModal, newTagObj
 
   setup() {
     const useCategoryState = inject("useCategoryState");

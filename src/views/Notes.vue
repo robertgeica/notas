@@ -15,8 +15,31 @@
       <button class="button" @click="toggleEditCategoryModal()">
         Edit category
       </button>
-      <div v-if="editCategoryModal">
-        
+      <div v-if="showEditCategoryModal">
+        <Modal @close="toggleEditCategoryModal">
+          <template v-slot:actions>
+            <input
+              type="text"
+              class="input"
+              v-model="newCategoryName"
+              placeholder="Category title"
+            />
+
+            <button
+              @click="
+                editCategory(
+                  newCategoryName,
+                  useCategoryState.state.currentCategory
+                );
+                toggleEditCategoryModal();
+              "
+            >
+              Edit note
+            </button>
+          </template>
+
+          <p>Edit note</p>
+        </Modal>
       </div>
     </div>
 
@@ -32,7 +55,6 @@
       />
       <button>Add note</button>
     </div>
-
 
     <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
   </div>
@@ -51,16 +73,28 @@ export default {
 
   setup() {
     const useCategoryState = inject("useCategoryState");
-    const { deleteCategory } = useCategoryState;
+    const { deleteCategory, editCategory } = useCategoryState;
+
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
+
+    const showEditCategoryModal = ref(false);
+    const toggleEditCategoryModal = () =>
+      (showEditCategoryModal.value = !showEditCategoryModal.value);
+
+    const newCategoryName = ref("");
 
     return {
       showSidebar,
       toggleSidebar,
 
+      showEditCategoryModal,
+      toggleEditCategoryModal,
+
       deleteCategory,
-      useCategoryState
+      useCategoryState,
+      newCategoryName,
+      editCategory,
     };
   },
 };
