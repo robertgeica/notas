@@ -1,7 +1,13 @@
 <template>
-  <Sidebar />
-  <Notes />
-  <NoteEditor />
+  <Suspense>
+    <template #default>
+        <Sidebar />
+
+    </template>
+    <template #fallback>
+      <span>Loading ...</span>
+    </template>
+  </Suspense>
 </template>
 
 <script>

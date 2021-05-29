@@ -1,4 +1,5 @@
 <template>
+  <h1></h1>
   <div class="sidebar">
     <h3>Notes-App</h3>
 
@@ -7,9 +8,9 @@
       <span class="add">+</span>
     </div>
 
-    <div class="category">
-      <h5></h5>
-      <span></span>
+    <div class="category" v-for="category in allCategories" :key="category.id">
+      <h5>{{ category.categoryName }}</h5>
+      <span>{{ category.notes.length }}</span>
     </div>
 
     <div class="tags-actions">
@@ -31,11 +32,18 @@
 </template>
 
 <script>
+import useCategoryState from "@/store/useCategoryState";
+
 export default {
   name: "Sidebar",
 
-  setup() {
-    return {};
+  async setup() {
+    const { getAllCategories } = useCategoryState;
+    const allCategories = await getAllCategories();
+
+    return {
+      allCategories,
+    };
   },
 };
 </script>

@@ -6,11 +6,11 @@ const state = reactive({
 });
 
 const getters = {
-  async getAllCategories() {
+  getAllCategories: async () => {
     const res = await fetch('http://localhost:5000/category');
     const data = await res.json();
-    state.value.categories = data;
-
+    state.allCategories = data;
+    
     return data;
   },
 
