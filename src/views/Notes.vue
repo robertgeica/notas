@@ -1,63 +1,69 @@
 <template>
-  <div class="sidebar">
-    <div class="note-actions">
-      <h3></h3>
-      <button class="button">Delete category</button>
+  <div class="sidebar" v-if="showSidebar">
+    <div
+      v-if="useCategoryState.state.currentCategory.categoryName"
+      class="note-actions"
+    >
+      <h3>{{ useCategoryState.state.currentCategory.categoryName }}</h3>
+      <button
+        class="button"
+        @click="deleteCategory(useCategoryState.state.currentCategory.id)"
+      >
+        Delete category
+      </button>
 
-      <button class="button">Edit category</button>
-
-      <div>
-        <Modal>
-          <template v-slot:actions>
-            <input type="text" class="input" placeholder="Category title" />
-
-            <button>Edit note</button>
-          </template>
-
-          <p>Edit note</p>
-        </Modal>
+      <button class="button" @click="toggleEditCategoryModal()">
+        Edit category
+      </button>
+      <div v-if="editCategoryModal">
+        
       </div>
     </div>
 
-    <div class="note-actions">
-      <input type="text" placeholder="search" />
+    <div
+      v-if="useCategoryState.state.currentCategory.categoryName"
+      class="note-actions"
+    >
+      <input
+        type="text"
+        placeholder="search"
+        v-model="search"
+        @keyup="searchNote"
+      />
       <button>Add note</button>
     </div>
 
-    <div>
-      <Modal>
-        <template v-slot:actions>
-          <input type="text" class="input" placeholder="Note title" />
-          <input type="text" class="input" placeholder="Note Body" />
 
-          <div>
-            <select name="tags">
-              <option></option>
-            </select>
-          </div>
-
-          <button>Add note</button>
-        </template>
-
-        <p>Add new note</p>
-      </Modal>
-    </div>
-
-    <div class="note">
-      <h4></h4>
-      <div class="tags">
-        <span> </span>
-      </div>
-      <p>...</p>
-    </div>
-    <i class="fas fa-arrow-left toggle-arrow"></i>
+    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
   </div>
-  <div class="toggle-notesbar-on">
-    <i class="fas fa-arrow-right toggle-arrow"></i>
+  <div class="toggle-notesbar-on" v-else>
+    <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
   </div>
 </template>
 
 <script>
+import { ref, inject } from "vue";
+import Modal from "@/components/Modal";
+
+export default {
+  name: "Notes",
+  components: { Modal },
+
+  setup() {
+    const useCategoryState = inject("useCategoryState");
+    const { deleteCategory } = useCategoryState;
+    const showSidebar = ref(true);
+    const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
+
+    return {
+      showSidebar,
+      toggleSidebar,
+
+      deleteCategory,
+      useCategoryState
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

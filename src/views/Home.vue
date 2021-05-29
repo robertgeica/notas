@@ -1,5 +1,6 @@
 <template>
   <Sidebar :allCategories="useCategoryState.state.allCategories" :allTags="useTagState.state.allTags" />
+  <Notes />
 </template>
 
 <script>

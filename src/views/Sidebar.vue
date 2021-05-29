@@ -11,7 +11,7 @@
             @click="
               addNewCategory(newCategoryName);
               toggleAddCategoryModal();
-              newCategoryName=''
+              newCategoryName = '';
             "
           >
             Add category
@@ -53,8 +53,6 @@
       </Modal>
     </div>
 
-
-
     <div class="categories-actions">
       <h4>Categories</h4>
       <span class="add" @click="toggleAddCategoryModal()">+</span>
@@ -84,9 +82,7 @@
         {{ tag.tagName }}
       </h5>
 
-      <span @click="deleteTag(tag.id)"
-        ><i class="fas fa-trash-alt"></i
-      ></span>
+      <span @click="deleteTag(tag.id)"><i class="fas fa-trash-alt"></i></span>
     </div>
 
     <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
@@ -103,8 +99,8 @@ import Modal from "@/components/Modal";
 export default {
   name: "Sidebar",
   components: { Modal },
-  props: ['allCategories', 'allTags'],
-    // showAddTagModal, toggleAddTagModal, newTagObj
+  props: ["allCategories", "allTags"],
+  // showAddTagModal, toggleAddTagModal, newTagObj
 
   setup() {
     const useCategoryState = inject("useCategoryState");
@@ -122,7 +118,8 @@ export default {
     const newCategoryName = ref(null);
 
     const showAddTagModal = ref(false);
-    const toggleAddTagModal = () => showAddTagModal.value = !showAddTagModal.value;
+    const toggleAddTagModal = () =>
+      (showAddTagModal.value = !showAddTagModal.value);
 
     const newTagObj = ref({});
     return {
@@ -142,7 +139,7 @@ export default {
 
       newTagObj,
       addNewTag,
-      deleteTag
+      deleteTag,
     };
   },
 };

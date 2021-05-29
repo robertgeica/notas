@@ -43,6 +43,19 @@ const actions = {
 
     state.allCategories = [...state.allCategories, data];
   },
+
+ deleteCategory: async (id) => {
+    const res = await fetch(`http://localhost:5000/category/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+
+    state.currentCategory = {};
+    state.allCategories = await getters.getAllCategories();
+
+  },
 };
 
 export default { state: readonly(state), ...getters, ...actions };
