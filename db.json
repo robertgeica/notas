@@ -11,76 +11,10 @@
             {
               "tagName": "web",
               "tagColor": "#2980b9"
-            },
-            {
-              "tagName": "framework",
-              "tagColor": "#27ae60"
-            },
-            {
-              "tagName": "javascript",
-              "tagColor": "yellow"
-            }
-          ]
-        },
-        {
-          "noteTitle": "Options API",
-          "noteBody": "test"
-        },
-        {
-          "noteTitle": "Directives",
-          "noteBody": "More about directives",
-          "noteTags": [
-            {
-              "tagName": "vue",
-              "tagColor": "green"
-            },
-            {
-              "tagName": "javascript",
-              "tagColor": "yellow"
-            }
-          ]
-        },
-        {
-          "noteTitle": "sda",
-          "noteBody": "das",
-          "noteTags": [
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
             }
           ]
         }
       ]
-    },
-    {
-      "categoryName": "React",
-      "notes": [
-        {
-          "noteTitle": "1",
-          "noteBody": "1",
-          "noteTags": [
-            {
-              "tagName": "web",
-              "tagColor": "#2980b9"
-            },
-            {
-              "tagName": "programming",
-              "tagColor": "#27ae60"
-            }
-          ]
-        },
-        {
-          "noteTitle": "das",
-          "noteBody": "dsa",
-          "noteTags": [
-            {
-              "tagName": "react",
-              "tagColor": "lightblue"
-            }
-          ]
-        }
-      ],
-      "id": 2
     }
   ],
   "tags": [
@@ -88,31 +22,6 @@
       "id": 0,
       "tagName": "web",
       "tagColor": "#2980b9"
-    },
-    {
-      "id": 1,
-      "tagName": "programming",
-      "tagColor": "#27ae60"
-    },
-    {
-      "tagName": "javascript",
-      "tagColor": "yellow",
-      "id": 2
-    },
-    {
-      "tagName": "react",
-      "tagColor": "lightblue",
-      "id": 3
-    },
-    {
-      "tagName": "vue",
-      "tagColor": "green",
-      "id": 4
-    },
-    {
-      "tagName": "java",
-      "tagColor": "black",
-      "id": 6
     }
   ]
 }
