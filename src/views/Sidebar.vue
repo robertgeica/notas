@@ -1,11 +1,30 @@
 <template>
   <h1></h1>
-  <div class="sidebar"  v-if="showSidebar">
+  <div class="sidebar" v-if="showSidebar">
     <h3>Notes-App</h3>
+
+    <div v-if="showAddCategoryModal">
+      <Modal @close="toggleAddCategoryModal">
+        <template v-slot:actions>
+          <input type="text" v-model="newCategoryName" class="input" />
+          <button
+            @click="
+              addNewCategory(newCategoryName);
+              toggleAddCategoryModal();
+              newCategoryName=''
+            "
+          >
+            Add category
+          </button>
+        </template>
+
+        <p>Add new category</p>
+      </Modal>
+    </div>
 
     <div class="categories-actions">
       <h4>Categories</h4>
-      <span class="add">+</span>
+      <span class="add" @click="toggleAddCategoryModal()">+</span>
     </div>
 
     <div
@@ -37,27 +56,38 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import useCategoryState from "@/store/useCategoryState";
+import { ref, inject } from "vue";
+import Modal from "@/components/Modal";
 
 export default {
   name: "Sidebar",
+  components: { Modal },
+  props: ['allCategories'],
 
-  async setup() {
-    const { getAllCategories, getCurrentCategory } = useCategoryState;
-    const allCategories = await getAllCategories();
+  setup() {
+    const useCategoryState = inject("useCategoryState");
+    const { getCurrentCategory, addNewCategory } = useCategoryState;
 
     const showSidebar = ref(true);
-    const toggleSidebar = () => {
-      showSidebar.value = !showSidebar.value;
-    }
+    const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
+
+    const showAddCategoryModal = ref(false);
+    const toggleAddCategoryModal = () =>
+      (showAddCategoryModal.value = !showAddCategoryModal.value);
+
+    const newCategoryName = ref(null);
 
     return {
-      allCategories,
       getCurrentCategory,
 
       showSidebar,
-      toggleSidebar
+      toggleSidebar,
+
+      showAddCategoryModal,
+      toggleAddCategoryModal,
+
+      newCategoryName,
+      addNewCategory
     };
   },
 };

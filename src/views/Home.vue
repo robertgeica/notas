@@ -1,16 +1,11 @@
 <template>
-  <Suspense>
-    <template #default>
-        <Sidebar />
+        <Sidebar :allCategories="useCategoryState.state.allCategories" />
 
-    </template>
-    <template #fallback>
-      <span>Loading ...</span>
-    </template>
-  </Suspense>
+
 </template>
 
 <script>
+import { inject } from 'vue';
 import Sidebar from "./Sidebar";
 import Notes from "./Notes";
 import NoteEditor from "./NoteEditor";
@@ -23,5 +18,14 @@ export default {
     Notes,
     NoteEditor,
   },
+
+  setup() {
+    const useCategoryState = inject("useCategoryState");
+    const getCategories = () => useCategoryState.getAllCategories();
+
+
+    getCategories();
+    return { useCategoryState }
+  }
 };
 </script>

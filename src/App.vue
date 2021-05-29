@@ -4,13 +4,17 @@
 
 <script>
 import Home from "./views/Home";
+import useCategoryState from '@/store/useCategoryState';
+import { provide } from 'vue';
 
 export default {
   name: "App",
-
-  methods: {},
   components: {
     Home,
+  },
+  
+  setup() {
+    provide('useCategoryState', useCategoryState);
   },
 };
 </script>
