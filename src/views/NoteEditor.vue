@@ -1,79 +1,33 @@
 <template>
-  <div v-if="this.currentNote.noteTitle" id="editor">
+  <div id="editor">
     <div class="editor-header">
-      <input class="title" type="text" v-model="this.currentNote.noteTitle" />
+      <input class="title" type="text" />
 
-      <span @click="$emit('edit-note', selectedCategory)"
-        ><i class="far fa-save"></i
-      ></span>
+      <span><i class="far fa-save"></i></span>
 
-      <span @click="$emit('delete-note', this.currentNote.noteTitle)"
-        ><i class="far fa-trash-alt"></i
-      ></span>
+      <span><i class="far fa-trash-alt"></i></span>
     </div>
-    <textarea v-model="this.currentNote.noteBody"></textarea>
+    <textarea></textarea>
 
     <div class="editor-footer">
       <div class="tags">
-        <span
-          :key="tag.tagName"
-          v-for="tag in currentNote.noteTags"
-          :style="{
-            background: `${tag.tagColor} `,
-          }"
-          @dblclick="
-            $emit(
-              'delete-tag-from-note',
-              this.currentNote,
-              this.selectedCategory,
-              tag
-            )
-          "
-        >
-          {{ tag.tagName }}
-        </span>
+        <span>tag </span>
       </div>
 
       <div class="actions">
         <div></div>
-        <select name="tags" v-model="noteTag">
-          <option
-            :key="tag.tagName"
-            v-for="tag in tags"
-            :style="{
-              background: `${tag.tagColor} `,
-            }"
-          >
-            {{ tag.tagName }} {{ tag.tagColor }}
-          </option>
+        <select name="tags">
+          <option>option</option>
         </select>
 
-        <span
-          @click="
-            $emit(
-              'add-tag-to-note',
-              this.currentNote,
-              this.selectedCategory,
-              this.noteTag
-            )
-          "
-          >+</span
-        >
+        <span>+</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  props: ["currentNote", "selectedCategory", "tags"],
-  data() {
-    return {
-      noteTag: {},
-    };
-  },
-  methods: {},
-};
+export default {};
 </script>
 
 <style lang="scss">

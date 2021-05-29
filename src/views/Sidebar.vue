@@ -1,130 +1,46 @@
 <template>
-  <div class="sidebar" v-if="showSidebar">
+  <div class="sidebar">
     <h3>Notes-App</h3>
-
-    <div v-if="showModal">
-      <Modal @close="toggleModal">
-        <template v-slot:actions>
-          <input type="text" v-model="newCategoryName" class="input" />
-          <button
-            @click="
-              $emit('add-category', newCategoryName);
-              toggleModal();
-            "
-          >
-            Add category
-          </button>
-        </template>
-
-        <p>Add new category</p>
-      </Modal>
-    </div>
-
-    <div v-if="showTagModal">
-      <Modal @close="toggleTagModal">
-        <template v-slot:actions>
-          <input
-            type="text"
-            v-model="newTagObj.tagName"
-            class="input"
-            placeholder="Tag name"
-          />
-          <input
-            type="text"
-            v-model="newTagObj.tagColor"
-            class="input"
-            placeholder="Tag color"
-          />
-
-          <button
-            @click="
-              $emit('add-tag', newTagObj);
-              toggleTagModal();
-            "
-          >
-            Add tag
-          </button>
-        </template>
-
-        <p>Add new tag</p>
-      </Modal>
-    </div>
 
     <div class="categories-actions">
       <h4>Categories</h4>
-      <span class="add" @click="toggleModal">+</span>
+      <span class="add">+</span>
     </div>
 
-    <div
-      class="category"
-      :key="category.id"
-      v-for="category in categories"
-      @click="$emit('get-category', category.id)"
-    >
-      <h5>{{ category.categoryName }}</h5>
-      <span>{{ category.notes.length }}</span>
+    <div class="category">
+      <h5></h5>
+      <span></span>
     </div>
 
     <div class="tags-actions">
       <h4>Tags</h4>
-      <span class="add" @click="toggleTagModal">+</span>
+      <span class="add">+</span>
     </div>
 
-    <div class="tag" :key="tag.id" v-for="tag in tags">
-      <h5
-        :style="{
-          background: `${tag.tagColor}`,
-        }"
-      >
-        {{ tag.tagName }}
-      </h5>
+    <div class="tag">
+      <h5></h5>
 
-      <span @click="$emit('delete-tag', tag.id)"
-        ><i class="fas fa-trash-alt"></i
-      ></span>
+      <spanS><i class="fas fa-trash-alt"></i></spanS>
     </div>
 
-    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+    <i class="fas fa-arrow-left toggle-arrow"></i>
   </div>
-  <div class="toggle-sidebar-on" v-else>
-    <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
+  <div class="toggle-sidebar-on">
+    <i class="fas fa-arrow-right toggle-arrow"></i>
   </div>
 </template>
 
 <script>
-import Modal from "../components/Modal";
 export default {
   name: "Sidebar",
-  props: ["categories", "tags"],
-  components: { Modal },
-  data() {
-    return {
-      showModal: false,
-      showTagModal: false,
-      newCategoryName: "",
-      newTagObj: {},
-      showSidebar: true,
-    };
-  },
-  methods: {
-    toggleModal() {
-      if (this.showModal) this.newCategoryName = "";
-      this.showModal = !this.showModal;
-    },
-    toggleTagModal() {
-      if (this.showTagModal) this.newTagObj = {};
-      this.showTagModal = !this.showTagModal;
-    },
-    toggleSidebar() {
-      this.showSidebar = !this.showSidebar;
-    },
+
+  setup() {
+    return {};
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
-
 .sidebar {
   display: flex;
   flex-direction: column;

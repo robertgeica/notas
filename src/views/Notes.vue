@@ -1,36 +1,17 @@
 <template>
-  <div class="sidebar" v-if="showSidebar">
-    <div v-if="selectedCategory.categoryName" class="note-actions">
-      <h3>{{ selectedCategory.categoryName }}</h3>
-      <button
-        class="button"
-        @click="$emit('delete-category', selectedCategory.id)"
-      >
-        Delete category
-      </button>
+  <div class="sidebar">
+    <div class="note-actions">
+      <h3></h3>
+      <button class="button">Delete category</button>
 
-      <button class="button" @click="toggleEditCategoryModal()">
-        Edit category
-      </button>
+      <button class="button">Edit category</button>
 
-      <div v-if="editCategoryModal">
-        <Modal @close="toggleEditCategoryModal">
+      <div>
+        <Modal>
           <template v-slot:actions>
-            <input
-              type="text"
-              v-model="selectedCategory.categoryName"
-              class="input"
-              placeholder="Category title"
-            />
+            <input type="text" class="input" placeholder="Category title" />
 
-            <button
-              @click="
-                $emit('edit-category', selectedCategory);
-                toggleEditCategoryModal();
-              "
-            >
-              Edit note
-            </button>
+            <button>Edit note</button>
           </template>
 
           <p>Edit note</p>
@@ -38,127 +19,45 @@
       </div>
     </div>
 
-    <div v-if="selectedCategory.categoryName" class="note-actions">
-      <input
-        type="text"
-        placeholder="search"
-        v-model="search"
-        @keyup="searchNote"
-      />
-      <button @click="toggleNoteModal()">Add note</button>
+    <div class="note-actions">
+      <input type="text" placeholder="search" />
+      <button>Add note</button>
     </div>
 
-    <div v-if="showNoteModal">
-      <Modal @close="toggleNoteModal">
+    <div>
+      <Modal>
         <template v-slot:actions>
-          <input
-            type="text"
-            v-model="newNote.noteTitle"
-            class="input"
-            placeholder="Note title"
-          />
-          <input
-            type="text"
-            v-model="newNote.noteBody"
-            class="input"
-            placeholder="Note Body"
-          />
+          <input type="text" class="input" placeholder="Note title" />
+          <input type="text" class="input" placeholder="Note Body" />
 
           <div>
-            <select name="tags" v-model="noteTag">
-              <option :key="tag.tagName" v-for="tag in tags">
-                {{ tag.tagName }} {{ tag.tagColor }}
-              </option>
+            <select name="tags">
+              <option></option>
             </select>
           </div>
 
-          <button
-            @click="
-              $emit('add-note', selectedCategory, newNote, noteTag);
-              toggleNoteModal();
-            "
-          >
-            Add note
-          </button>
+          <button>Add note</button>
         </template>
 
         <p>Add new note</p>
       </Modal>
     </div>
 
-    <div
-      :key="note"
-      v-for="note in notes || selectedCategory.notes"
-      @click="$emit('get-note', note)"
-      class="note"
-    >
-      <h4>{{ note.noteTitle }}</h4>
+    <div class="note">
+      <h4></h4>
       <div class="tags">
-        <span
-          :key="tag"
-          v-for="tag in note.noteTags"
-          :style="{
-            background: `${tag.tagColor} `,
-          }"
-        >
-          {{ tag.tagName }}
-        </span>
+        <span> </span>
       </div>
-      <p>{{ note.noteBody.substr(0, 100) }} ...</p>
+      <p>...</p>
     </div>
-    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+    <i class="fas fa-arrow-left toggle-arrow"></i>
   </div>
-  <div class="toggle-notesbar-on" v-else>
-    <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
+  <div class="toggle-notesbar-on">
+    <i class="fas fa-arrow-right toggle-arrow"></i>
   </div>
 </template>
 
 <script>
-import Modal from "../components/Modal";
-
-export default {
-  name: "Notes",
-  props: ["selectedCategory", "tags"],
-  components: { Modal },
-  data() {
-    return {
-      showNoteModal: false,
-      editCategoryModal: false,
-      newNote: {},
-      noteTag: {},
-      search: "",
-      notes: [],
-      showSidebar: true,
-    };
-  },
-  mounted() {
-    this.notes = this.selectedCategory.notes;
-  },
-  methods: {
-    toggleEditCategoryModal() {
-      this.editCategoryModal = !this.editCategoryModal;
-    },
-    toggleNoteModal() {
-      if (this.showNoteModal) this.newNote = {};
-      this.showNoteModal = !this.showNoteModal;
-    },
-
-    searchNote() {
-      this.notes = this.selectedCategory.notes;
-      let matchingSearch = [];
-      this.selectedCategory.notes.forEach((note) => {
-        if (note.noteTitle.toLowerCase().includes(this.search.toLowerCase())) {
-          matchingSearch.push(note);
-        }
-      });
-
-      this.notes = matchingSearch;
-    },
-    toggleSidebar() {
-      this.showSidebar = !this.showSidebar;
-    },
-  },
-};
 </script>
 
 <style lang="scss" scoped>
