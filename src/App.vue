@@ -5,6 +5,7 @@
 <script>
 import Home from "./views/Home";
 import useCategoryState from '@/store/useCategoryState';
+import useTagState from '@/store/useTagState';
 import { provide } from 'vue';
 
 export default {
@@ -15,6 +16,7 @@ export default {
   
   setup() {
     provide('useCategoryState', useCategoryState);
+    provide('useTagState', useTagState);
   },
 };
 </script>

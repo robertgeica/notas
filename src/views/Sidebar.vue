@@ -22,6 +22,38 @@
       </Modal>
     </div>
 
+    <div v-if="showAddTagModal">
+      <Modal @close="toggleAddTagModal">
+        <template v-slot:actions>
+          <input
+            type="text"
+            v-model="newTagObj.tagName"
+            class="input"
+            placeholder="Tag name"
+          />
+          <input
+            type="text"
+            v-model="newTagObj.tagColor"
+            class="input"
+            placeholder="Tag color"
+          />
+
+          <button
+            @click="
+              addNewTag(newTagObj);
+              toggleAddTagModal();
+            "
+          >
+            Add tag
+          </button>
+        </template>
+
+        <p>Add new tag</p>
+      </Modal>
+    </div>
+
+
+
     <div class="categories-actions">
       <h4>Categories</h4>
       <span class="add" @click="toggleAddCategoryModal()">+</span>
@@ -39,13 +71,21 @@
 
     <div class="tags-actions">
       <h4>Tags</h4>
-      <span class="add">+</span>
+      <span class="add" @click="toggleAddTagModal">+</span>
     </div>
 
-    <div class="tag">
-      <h5></h5>
+    <div class="tag" :key="tag.id" v-for="tag in allTags">
+      <h5
+        :style="{
+          background: `${tag.tagColor}`,
+        }"
+      >
+        {{ tag.tagName }}
+      </h5>
 
-      <spanS><i class="fas fa-trash-alt"></i></spanS>
+      <span @click="handleDeleteTag(tag.id)"
+        ><i class="fas fa-trash-alt"></i
+      ></span>
     </div>
 
     <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
@@ -62,7 +102,8 @@ import Modal from "@/components/Modal";
 export default {
   name: "Sidebar",
   components: { Modal },
-  props: ['allCategories'],
+  props: ['allCategories', 'allTags'],
+    // showAddTagModal, toggleAddTagModal, newTagObj
 
   setup() {
     const useCategoryState = inject("useCategoryState");
@@ -77,6 +118,10 @@ export default {
 
     const newCategoryName = ref(null);
 
+    const showAddTagModal = ref(false);
+    const toggleAddTagModal = () => showAddTagModal.value = !showAddTagModal.value;
+
+    const newTagObj = ref({});
     return {
       getCurrentCategory,
 
@@ -87,7 +132,13 @@ export default {
       toggleAddCategoryModal,
 
       newCategoryName,
-      addNewCategory
+      addNewCategory,
+
+      showAddTagModal,
+      toggleAddTagModal,
+
+      newTagObj,
+      
     };
   },
 };

@@ -1,11 +1,9 @@
 <template>
-        <Sidebar :allCategories="useCategoryState.state.allCategories" />
-
-
+  <Sidebar :allCategories="useCategoryState.state.allCategories" :allTags="useTagState.state.allTags" />
 </template>
 
 <script>
-import { inject } from 'vue';
+import { inject } from "vue";
 import Sidebar from "./Sidebar";
 import Notes from "./Notes";
 import NoteEditor from "./NoteEditor";
@@ -21,11 +19,13 @@ export default {
 
   setup() {
     const useCategoryState = inject("useCategoryState");
+    const useTagState = inject("useTagState");
     const getCategories = () => useCategoryState.getAllCategories();
-
+    const getTags = () => useTagState.getAllTags();
 
     getCategories();
-    return { useCategoryState }
-  }
+    getTags();
+    return { useCategoryState, useTagState };
+  },
 };
 </script>
