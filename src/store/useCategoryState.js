@@ -13,6 +13,13 @@ const getters = {
     
     return data;
   },
+  getCurrentCategory: async (id) => {
+    const res = await fetch(`http://localhost:5000/category/${id}`);
+    const data = await res.json();
+    state.currentCategory = await data;
+
+    return data;
+  },
 
 };
 

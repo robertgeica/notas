@@ -1,6 +1,6 @@
 <template>
   <h1></h1>
-  <div class="sidebar">
+  <div class="sidebar"  v-if="showSidebar">
     <h3>Notes-App</h3>
 
     <div class="categories-actions">
@@ -8,7 +8,12 @@
       <span class="add">+</span>
     </div>
 
-    <div class="category" v-for="category in allCategories" :key="category.id">
+    <div
+      class="category"
+      v-for="category in allCategories"
+      :key="category.id"
+      @click="getCurrentCategory(category.id)"
+    >
       <h5>{{ category.categoryName }}</h5>
       <span>{{ category.notes.length }}</span>
     </div>
@@ -24,25 +29,35 @@
       <spanS><i class="fas fa-trash-alt"></i></spanS>
     </div>
 
-    <i class="fas fa-arrow-left toggle-arrow"></i>
+    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
   </div>
-  <div class="toggle-sidebar-on">
-    <i class="fas fa-arrow-right toggle-arrow"></i>
+  <div class="toggle-sidebar-on" v-else>
+    <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
 import useCategoryState from "@/store/useCategoryState";
 
 export default {
   name: "Sidebar",
 
   async setup() {
-    const { getAllCategories } = useCategoryState;
+    const { getAllCategories, getCurrentCategory } = useCategoryState;
     const allCategories = await getAllCategories();
+
+    const showSidebar = ref(true);
+    const toggleSidebar = () => {
+      showSidebar.value = !showSidebar.value;
+    }
 
     return {
       allCategories,
+      getCurrentCategory,
+
+      showSidebar,
+      toggleSidebar
     };
   },
 };
