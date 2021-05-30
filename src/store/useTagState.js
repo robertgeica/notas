@@ -1,7 +1,7 @@
 import { reactive, readonly } from 'vue';
 
 const state = reactive({
-  allTags: []
+  allTags: [],
 });
 
 const getters = {
@@ -10,7 +10,7 @@ const getters = {
     const data = await res.json();
     state.allTags = await data;
     return data;
-  }
+  },
 };
 
 const actions = {
@@ -32,9 +32,8 @@ const actions = {
     const data = await res.json();
     state.allTags = [...state.allTags, data];
   },
-  
+
   deleteTag: async (id) => {
-    
     const res = await fetch(`http://localhost:5000/tags/${id}`, {
       method: 'DELETE',
       headers: {
@@ -43,9 +42,7 @@ const actions = {
     });
 
     state.allTags = await getters.getAllTags();
-    
-  }
-
+  },
 };
 
 export default { state: readonly(state), ...getters, ...actions };

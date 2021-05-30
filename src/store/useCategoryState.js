@@ -44,7 +44,7 @@ const actions = {
     state.allCategories = [...state.allCategories, data];
   },
 
- deleteCategory: async (id) => {
+  deleteCategory: async (id) => {
     const res = await fetch(`http://localhost:5000/category/${id}`, {
       method: 'DELETE',
       headers: {
@@ -54,15 +54,13 @@ const actions = {
 
     state.currentCategory = {};
     state.allCategories = await getters.getAllCategories();
-
   },
 
   editCategory: async (newCategoryName, category) => {
-
     const updatedCategory = {
       ...category,
-      categoryName: newCategoryName
-    }
+      categoryName: newCategoryName,
+    };
     const res = await fetch(`http://localhost:5000/category/${category.id}`, {
       method: 'PUT',
       headers: {
@@ -70,7 +68,7 @@ const actions = {
       },
       body: JSON.stringify(updatedCategory),
     });
-    state.allCategories =  await getters.getAllCategories();
+    state.allCategories = await getters.getAllCategories();
     state.currentCategory = updatedCategory;
   },
 };

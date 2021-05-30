@@ -6,7 +6,17 @@
       "notes": [
         {
           "noteTitle": "Composition API",
-          "noteBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis velit at ante rutrum, eget ornare sapien vehicula.",
+          "noteBody": "Composition api - vue js",
+          "noteTags": [
+            {
+              "tagName": "web",
+              "tagColor": "#2980b9"
+            }
+          ]
+        },
+        {
+          "noteTitle": "Option Api",
+          "noteBody": "Options api - vue js",
           "noteTags": [
             {
               "tagName": "web",

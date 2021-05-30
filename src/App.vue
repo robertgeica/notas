@@ -6,6 +6,7 @@
 import Home from "./views/Home";
 import useCategoryState from '@/store/useCategoryState';
 import useTagState from '@/store/useTagState';
+import useNoteState from '@/store/useNoteState';
 import { provide } from 'vue';
 
 export default {
@@ -17,6 +18,7 @@ export default {
   setup() {
     provide('useCategoryState', useCategoryState);
     provide('useTagState', useTagState);
+    provide('useNoteState', useNoteState);
   },
 };
 </script>

@@ -55,7 +55,26 @@
       />
       <button>Add note</button>
     </div>
-
+    <div
+      :key="note"
+      v-for="note in useCategoryState.state.currentCategory.notes"
+      @click="getCurrentNote(note)"
+      class="note"
+    >
+      <h4>{{ note.noteTitle }}</h4>
+      <div class="tags">
+        <span
+          :key="tag"
+          v-for="tag in note.noteTags"
+          :style="{
+            background: `${tag.tagColor} `,
+          }"
+        >
+          {{ tag.tagName }}
+        </span>
+      </div>
+      <p>{{ note.noteBody.substr(0, 100) }} ...</p>
+    </div>
     <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
   </div>
   <div class="toggle-notesbar-on" v-else>
@@ -73,7 +92,9 @@ export default {
 
   setup() {
     const useCategoryState = inject("useCategoryState");
+    const useNoteState = inject("useNoteState");
     const { deleteCategory, editCategory } = useCategoryState;
+    const { getCurrentNote } = useNoteState;
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
@@ -95,6 +116,7 @@ export default {
       useCategoryState,
       newCategoryName,
       editCategory,
+      getCurrentNote
     };
   },
 };

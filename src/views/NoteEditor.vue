@@ -1,33 +1,72 @@
 <template>
-  <div id="editor">
+  <div v-if="useNoteState.state.currentNote.noteTitle" id="editor">
     <div class="editor-header">
-      <input class="title" type="text" />
+      <input
+        class="title"
+        type="text"
+        name="noteTitle"
+        :value="useNoteState.state.currentNote.noteTitle"
+        @input="updateNoteTitle"
+      />
+      <span
+        @click="
+          saveNote(
+            newNoteTitle,
+            newNoteBody,
+            category,
+            useNoteState.state.currentNote
+          )
+        "
+        ><i class="far fa-save"></i
+      ></span>
 
-      <span><i class="far fa-save"></i></span>
-
-      <span><i class="far fa-trash-alt"></i></span>
+      <span @click="handleDeleteNote()"><i class="far fa-trash-alt"></i></span>
     </div>
-    <textarea></textarea>
-
-    <div class="editor-footer">
-      <div class="tags">
-        <span>tag </span>
-      </div>
-
-      <div class="actions">
-        <div></div>
-        <select name="tags">
-          <option>option</option>
-        </select>
-
-        <span>+</span>
-      </div>
-    </div>
+    <textarea
+      name="noteBody"
+      :value="useNoteState.state.currentNote.noteBody"
+      @input="updateNoteBody"
+    ></textarea>
   </div>
 </template>
 
 <script>
-export default {};
+import { inject, ref } from "vue";
+
+export default {
+  name: "NoteEditor",
+  props: ["category"],
+
+  setup() {
+    const useNoteState = inject("useNoteState");
+    const { editNote } = useNoteState;
+
+    const newNoteTitle = ref(null);
+    const newNoteBody = ref(null);
+
+    const updateNoteTitle = (e) => (newNoteTitle.value = e.target.value);
+    const updateNoteBody = (e) => (newNoteBody.value = e.target.value);
+
+    const saveNote = (noteTitle, noteBody, category, oldNote) => {
+      const updatedNote = { noteTitle, noteBody };
+      editNote(updatedNote, category.currentCategory, oldNote);
+
+      newNoteTitle.value = null;
+      newNoteBody.value = null;
+    };
+
+    return {
+      useNoteState,
+
+      newNoteTitle,
+      newNoteBody,
+      updateNoteTitle,
+      updateNoteBody,
+
+      saveNote,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
