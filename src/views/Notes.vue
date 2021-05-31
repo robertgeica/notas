@@ -98,6 +98,7 @@
               );
               toggleAddNoteModal();
               newNote = {};
+              noteTags = [];
             "
           >
             Add note
@@ -120,10 +121,10 @@
           :key="tag"
           v-for="tag in note.noteTags"
           :style="{
-            background: `${tag.tagColor} `,
+            background: `${useTagState.state.allTags[tag].tagColor} `,
           }"
         >
-          {{ tag.tagName }}
+          {{ useTagState.state.allTags[tag].tagName }}
         </span>
       </div>
       <p>{{ note.noteBody.substr(0, 100) }} ...</p>

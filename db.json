@@ -8,32 +8,12 @@
           "noteTitle": "Composition API",
           "noteBody": "Composition api - vue",
           "noteTags": [
-            {
-              "tagName": "web",
-              "tagColor": "#2980b9"
-            }
+            0, 1
           ]
         },
         {
           "noteTitle": "Option Api",
           "noteBody": "Options api - vue ",
-          "noteTags": [
-            {
-              "tagName": "web",
-              "tagColor": "#2980b9"
-            }
-          ]
-        },
-        {
-          "noteTitle": "test title",
-          "noteBody": "test body",
-          "noteTags": [
-            0
-          ]
-        },
-        {
-          "noteTitle": "test2",
-          "noteBody": "tb",
           "noteTags": [
             1
           ]
