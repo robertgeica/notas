@@ -20,7 +20,7 @@
         ><i class="far fa-save"></i
       ></span>
 
-      <span @click="handleDeleteNote()"><i class="far fa-trash-alt"></i></span>
+      <span @click="deleteNote(useNoteState.state.currentNote.noteTitle, category.currentCategory)"><i class="far fa-trash-alt"></i></span>
     </div>
     <textarea
       name="noteBody"
@@ -39,7 +39,7 @@ export default {
 
   setup() {
     const useNoteState = inject("useNoteState");
-    const { editNote } = useNoteState;
+    const { editNote, deleteNote } = useNoteState;
 
     const newNoteTitle = ref(null);
     const newNoteBody = ref(null);
@@ -64,6 +64,7 @@ export default {
       updateNoteBody,
 
       updateNote,
+      deleteNote
     };
   },
 };

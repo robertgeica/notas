@@ -34,6 +34,8 @@ const actions = {
     });
 
     useCategoryState.getCurrentCategory(category.id);
+    console.log(useCategoryState)
+    await useCategoryState.getAllCategories();
 
 
   },
@@ -76,6 +78,32 @@ const actions = {
     state.currentNote = newNote;
     useCategoryState.getCurrentCategory(currentCategory.id);
   },
+  deleteNote: async (noteTitle, category) => {
+    const newCategory = {
+      ...category,
+      notes: category.notes.filter(
+        (note) => note.noteTitle !== noteTitle
+      ),
+    };
+
+    const res = await fetch(
+      `http://localhost:5000/category/${category.id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newCategory),
+      }
+    );
+
+      
+    state.currentNote = {};
+    useCategoryState.getCurrentCategory(category.id);
+    await useCategoryState.getAllCategories();
+    
+    console.log(newCategory)
+  }
 };
 
 export default { state: readonly(state), ...getters, ...actions };

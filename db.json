@@ -30,17 +30,43 @@
           "noteTags": [
             0
           ]
+        },
+        {
+          "noteTitle": "test2",
+          "noteBody": "tb",
+          "noteTags": [
+            1
+          ]
         }
       ]
     },
     {
       "categoryName": "React",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "React hooks",
+          "noteBody": "s",
+          "noteTags": []
+        },
+        {
+          "noteTitle": "Components State",
+          "noteBody": "t",
+          "noteTags": []
+        }
+      ],
       "id": 2
     },
     {
       "categoryName": "JavaScript",
-      "notes": [],
+      "notes": [
+        {
+          "noteTitle": "Spread Operator",
+          "noteBody": "... spread operator",
+          "noteTags": [
+            0
+          ]
+        }
+      ],
       "id": 3
     }
   ],

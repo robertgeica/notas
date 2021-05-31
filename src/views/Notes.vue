@@ -97,6 +97,7 @@
                 noteTags
               );
               toggleAddNoteModal();
+              newNote = {};
             "
           >
             Add note
