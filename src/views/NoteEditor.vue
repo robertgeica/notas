@@ -10,7 +10,7 @@
       />
       <span
         @click="
-          saveNote(
+          updateNote(
             newNoteTitle,
             newNoteBody,
             category,
@@ -47,7 +47,7 @@ export default {
     const updateNoteTitle = (e) => (newNoteTitle.value = e.target.value);
     const updateNoteBody = (e) => (newNoteBody.value = e.target.value);
 
-    const saveNote = (noteTitle, noteBody, category, oldNote) => {
+    const updateNote = (noteTitle, noteBody, category, oldNote) => {
       const updatedNote = { noteTitle, noteBody };
       editNote(updatedNote, category.currentCategory, oldNote);
 
@@ -63,7 +63,7 @@ export default {
       updateNoteTitle,
       updateNoteBody,
 
-      saveNote,
+      updateNote,
     };
   },
 };

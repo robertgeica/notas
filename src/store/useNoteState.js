@@ -11,6 +11,32 @@ const getters = {
   },
 };
 const actions = {
+
+  addNote: async (category, newNote, noteTags) => {
+    // console.log('category', category, 'newNote', newNote, 'noteTags', noteTags);
+    if (!newNote.noteTitle) {
+      alert('Add a title for this note');
+      return;
+    }
+
+    newNote.noteTags = noteTags;
+    const newCategory = {
+      ...category,
+      notes: [...category.notes, newNote]
+    };
+
+    const res = await fetch(`http://localhost:5000/category/${category.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newCategory),
+    });
+
+    useCategoryState.getCurrentCategory(category.id);
+
+
+  },
   editNote: async (updatedNote, currentCategory, oldNote) => {
     if (updatedNote.noteTitle === null && updatedNote.noteBody === null) {
       console.log('null values');

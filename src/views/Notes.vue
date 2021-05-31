@@ -53,8 +53,60 @@
         v-model="search"
         @keyup="searchNote"
       />
-      <button>Add note</button>
+      <button @click="toggleAddNoteModal">Add note</button>
     </div>
+
+    <div v-if="showAddNoteModal">
+      <Modal @close="toggleAddNoteModal">
+        <template v-slot:actions>
+          <input
+            type="text"
+            v-model="newNote.noteTitle"
+            class="input"
+            placeholder="Note title"
+          />
+          <input
+            type="text"
+            v-model="newNote.noteBody"
+            class="input"
+            placeholder="Note Body"
+          />
+
+          <div class="tag-select-container">
+            <span
+              class="tag-select"
+              :key="tag.tagName"
+              v-for="tag in useTagState.state.allTags"
+              :style="{
+                background: `${tag.tagColor} `
+              }"
+              @click="
+                addTagId(tag.id);
+              "
+            >
+              {{ tag.tagName }} {{ tag.tagColor }}
+            </span>
+          </div>
+          <p>Added tags: {{ noteTags }} </p>
+
+          <button
+            @click="
+              addNote(
+                useCategoryState.state.currentCategory,
+                newNote,
+                noteTags
+              );
+              toggleAddNoteModal();
+            "
+          >
+            Add note
+          </button>
+        </template>
+
+        <p>Add new note</p>
+      </Modal>
+    </div>
+
     <div
       :key="note"
       v-for="note in useCategoryState.state.currentCategory.notes"
@@ -93,8 +145,10 @@ export default {
   setup() {
     const useCategoryState = inject("useCategoryState");
     const useNoteState = inject("useNoteState");
+    const useTagState = inject("useTagState");
+
     const { deleteCategory, editCategory } = useCategoryState;
-    const { getCurrentNote } = useNoteState;
+    const { getCurrentNote, addNote } = useNoteState;
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
@@ -105,6 +159,31 @@ export default {
 
     const newCategoryName = ref("");
 
+    const showAddNoteModal = ref(false);
+    const toggleAddNoteModal = () => {
+      showAddNoteModal.value = !showAddNoteModal.value;
+    };
+    const newNote = ref({});
+
+    let noteTags = ref([]);
+    const addTagId = (tagId) => {
+      let removedFlag = false;
+      noteTags.value.forEach((noteTagId) => {
+        if (noteTagId === tagId) {
+          noteTags.value = noteTags.value.filter((id) => id !== tagId);
+          removedFlag = true;
+          return;
+        }
+      });
+
+      if (!removedFlag) {
+        noteTags.value.push(tagId);
+      }
+      console.log(noteTags.value);
+    };
+
+  
+
     return {
       showSidebar,
       toggleSidebar,
@@ -114,9 +193,17 @@ export default {
 
       deleteCategory,
       useCategoryState,
+      useTagState,
       newCategoryName,
       editCategory,
-      getCurrentNote
+      getCurrentNote,
+      addNote,
+      addTagId,
+
+      showAddNoteModal,
+      toggleAddNoteModal,
+      newNote,
+      noteTags,
     };
   },
 };
@@ -175,6 +262,17 @@ export default {
       border-radius: 5px;
       color: #fff;
       font-size: 14px;
+    }
+  }
+  .tag-select-container {
+    margin: 1em;
+
+    .tag-select {
+      margin: 0.5em;
+      padding: 0.2em;
+      border: 1px solid black;
+      border-radius: 5px;
+      cursor: pointer;
     }
   }
 }

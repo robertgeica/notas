@@ -6,7 +6,7 @@
       "notes": [
         {
           "noteTitle": "Composition API",
-          "noteBody": "Composition api - vue js",
+          "noteBody": "Composition api - vue",
           "noteTags": [
             {
               "tagName": "web",
@@ -16,12 +16,19 @@
         },
         {
           "noteTitle": "Option Api",
-          "noteBody": "Options api - vue js",
+          "noteBody": "Options api - vue ",
           "noteTags": [
             {
               "tagName": "web",
               "tagColor": "#2980b9"
             }
+          ]
+        },
+        {
+          "noteTitle": "test title",
+          "noteBody": "test body",
+          "noteTags": [
+            0
           ]
         }
       ]
