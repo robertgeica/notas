@@ -84,7 +84,7 @@
                 addTagId(tag.id);
               "
             >
-              {{ tag.tagName }} {{ tag.tagColor }}
+              #{{ tag.tagName }}
             </span>
           </div>
           <p>Added tags: {{ noteTags }} </p>
@@ -105,7 +105,7 @@
           </button>
         </template>
 
-        <p>Add new note</p>
+        <h3>Add new note</h3>
       </Modal>
     </div>
 
@@ -124,7 +124,7 @@
             background: `${useTagState.state.allTags[tag].tagColor} `,
           }"
         >
-          {{ useTagState.state.allTags[tag].tagName }}
+          #{{ useTagState.state.allTags[tag].tagName }}
         </span>
       </div>
       <p>{{ note.noteBody.substr(0, 100) }} ...</p>

@@ -79,7 +79,7 @@
           background: `${tag.tagColor}`,
         }"
       >
-        {{ tag.tagName }}
+        #{{ tag.tagName }}
       </h5>
 
       <span @click="deleteTag(tag.id)"><i class="fas fa-trash-alt"></i></span>
