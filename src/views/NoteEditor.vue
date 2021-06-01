@@ -20,26 +20,72 @@
         ><i class="far fa-save"></i
       ></span>
 
-      <span @click="deleteNote(useNoteState.state.currentNote.noteTitle, category.currentCategory)"><i class="far fa-trash-alt"></i></span>
+      <span
+        @click="
+          deleteNote(
+            useNoteState.state.currentNote.noteTitle,
+            category.currentCategory
+          )
+        "
+        ><i class="far fa-trash-alt"></i
+      ></span>
     </div>
     <textarea
       name="noteBody"
       :value="useNoteState.state.currentNote.noteBody"
       @input="updateNoteBody"
     ></textarea>
+
+    <div class="editor-footer">
+      <div class="tags">
+        <span
+          :key="tag.tagName"
+          v-for="tag in useNoteState.state.currentNote.noteTags"
+          :style="{
+            background: `${useTagState.state.allTags[tag].tagColor} `,
+          }"
+        >
+          <!-- @dblclick="
+            handleDeleteTag(
+            )
+          " -->
+          #{{ useTagState.state.allTags[tag].tagName }}
+        </span>
+      </div>
+
+      <div class="actions">
+        <div></div>
+        <select name="tags" v-model="noteTag">
+          <option
+            :key="tag.tagName"
+            v-for="tag in useTagState.state.allTags"
+            :style="{
+              background: `${tag.tagColor} `,
+            }"
+          >
+            {{ tag.tagName }}
+          </option>
+        </select>
+        <span
+          @click="addTagToNote(noteTag, useTagState.state.allTags, useNoteState.state.currentNote, category.currentCategory)"
+        >Add</span>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { inject, ref } from "vue";
-
+// useTagState.state.allTags[tag]
 export default {
   name: "NoteEditor",
   props: ["category"],
 
   setup() {
     const useNoteState = inject("useNoteState");
-    const { editNote, deleteNote } = useNoteState;
+    const useTagState = inject("useTagState");
+    const { editNote, deleteNote, addTagToNote } = useNoteState;
 
     const newNoteTitle = ref(null);
     const newNoteBody = ref(null);
@@ -55,8 +101,11 @@ export default {
       newNoteBody.value = null;
     };
 
+    const noteTag = ref(null);
+
     return {
       useNoteState,
+      useTagState,
 
       newNoteTitle,
       newNoteBody,
@@ -64,7 +113,10 @@ export default {
       updateNoteBody,
 
       updateNote,
-      deleteNote
+      deleteNote,
+      addTagToNote,
+
+      noteTag
     };
   },
 };

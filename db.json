@@ -8,7 +8,8 @@
           "noteTitle": "Composition API",
           "noteBody": "Composition api - vue",
           "noteTags": [
-            0, 1
+            0,
+            1
           ]
         },
         {
@@ -26,12 +27,18 @@
         {
           "noteTitle": "React hooks",
           "noteBody": "s",
-          "noteTags": []
+          "noteTags": [
+            0,
+            1
+          ]
         },
         {
           "noteTitle": "Components State",
           "noteBody": "t",
-          "noteTags": []
+          "noteTags": [
+            1,
+            0
+          ]
         }
       ],
       "id": 2

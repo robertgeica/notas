@@ -93,6 +93,45 @@ const actions = {
     useCategoryState.getCurrentCategory(category.id);
     await useCategoryState.getAllCategories();
   },
+
+  addTagToNote: async (newTagName, allTags, note, category) => {
+    if (newTagName === null) {
+      return console.log('no tag selected');
+    }
+
+    const tagId = allTags.filter(tag => tag.tagName === newTagName);
+    const isTagAdded = note.noteTags.filter(id => id === tagId[0].id)
+    if(isTagAdded.length !== 0) {
+      console.log('tag already exist')
+      return ;
+    }
+    const tag = allTags.filter((tag) => tag.tagName == newTagName);
+
+    const newNote = {
+      ...note,
+      noteTags: [...note.noteTags, tag[0].id],
+    };
+
+    const objIndex = category.notes.findIndex(
+      (obj) => obj.noteTitle === note.noteTitle
+    );
+
+    const newCategory = JSON.parse(JSON.stringify(category));
+
+    newCategory.notes[objIndex] = { ...newNote };
+
+    await fetch(`http://localhost:5000/category/${category.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newCategory),
+    });
+
+    useCategoryState.getCurrentCategory(category.id);
+    // await useCategoryState.getAllCategories();
+    state.currentNote = newNote;
+  },
 };
 
 export default { state: readonly(state), ...getters, ...actions };
