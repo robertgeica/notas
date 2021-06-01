@@ -99,11 +99,11 @@ const actions = {
       return console.log('no tag selected');
     }
 
-    const tagId = allTags.filter(tag => tag.tagName === newTagName);
-    const isTagAdded = note.noteTags.filter(id => id === tagId[0].id)
-    if(isTagAdded.length !== 0) {
-      console.log('tag already exist')
-      return ;
+    const tagId = allTags.filter((tag) => tag.tagName === newTagName);
+    const isTagAdded = note.noteTags.filter((id) => id === tagId[0].id);
+    if (isTagAdded.length !== 0) {
+      console.log('tag already exist');
+      return;
     }
     const tag = allTags.filter((tag) => tag.tagName == newTagName);
 
@@ -129,7 +129,32 @@ const actions = {
     });
 
     useCategoryState.getCurrentCategory(category.id);
-    // await useCategoryState.getAllCategories();
+    state.currentNote = newNote;
+  },
+  deleteTagFromNote: async (tagId, note, category) => {
+    console.log(tagId, note, category);
+    const newNote = {
+      ...note,
+      noteTags: note.noteTags.filter((tag) => tag !== tagId),
+    };
+
+    const objIndex = category.notes.findIndex(
+      (obj) => obj.noteTitle === note.noteTitle
+    );
+
+    const newCategory = JSON.parse(JSON.stringify(category));
+
+    newCategory.notes[objIndex] = { ...newNote };
+
+    await fetch(`http://localhost:5000/category/${category.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newCategory),
+    });
+
+    useCategoryState.getCurrentCategory(category.id);
     state.currentNote = newNote;
   },
 };

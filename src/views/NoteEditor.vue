@@ -44,11 +44,9 @@
           :style="{
             background: `${useTagState.state.allTags[tag].tagColor} `,
           }"
+          @dblclick="
+            deleteTagFromNote(useTagState.state.allTags[tag].id, useNoteState.state.currentNote, category.currentCategory)"
         >
-          <!-- @dblclick="
-            handleDeleteTag(
-            )
-          " -->
           #{{ useTagState.state.allTags[tag].tagName }}
         </span>
       </div>
@@ -85,7 +83,7 @@ export default {
   setup() {
     const useNoteState = inject("useNoteState");
     const useTagState = inject("useTagState");
-    const { editNote, deleteNote, addTagToNote } = useNoteState;
+    const { editNote, deleteNote, addTagToNote, deleteTagFromNote } = useNoteState;
 
     const newNoteTitle = ref(null);
     const newNoteBody = ref(null);
@@ -115,6 +113,7 @@ export default {
       updateNote,
       deleteNote,
       addTagToNote,
+      deleteTagFromNote,
 
       noteTag
     };
