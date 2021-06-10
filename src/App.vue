@@ -3,11 +3,13 @@
 </template>
 
 <script>
-import Home from "./views/Home";
+import { provide } from 'vue';
+import { DefaultApolloClient } from "@vue/apollo-composable";
 import useCategoryState from '@/store/useCategoryState';
 import useTagState from '@/store/useTagState';
 import useNoteState from '@/store/useNoteState';
-import { provide } from 'vue';
+import Home from "./views/Home";
+import apolloClient from './apollo-server';
 
 export default {
   name: "App",
@@ -16,6 +18,7 @@ export default {
   },
   
   setup() {
+    provide(DefaultApolloClient, apolloClient);
     provide('useCategoryState', useCategoryState);
     provide('useTagState', useTagState);
     provide('useNoteState', useNoteState);
