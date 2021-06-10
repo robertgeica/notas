@@ -1,4 +1,6 @@
-import { reactive, readonly, computed } from 'vue';
+import { reactive, readonly, watch } from 'vue';
+import gql from 'graphql-tag';
+import { useQuery } from '@vue/apollo-composable';
 
 const state = reactive({
   allCategories: [],
@@ -7,10 +9,25 @@ const state = reactive({
 
 const getters = {
   getAllCategories: async () => {
-    const res = await fetch('http://localhost:5000/category');
-    const data = await res.json();
-    state.allCategories = await data;
-    return data;
+    const { result } = useQuery(gql`
+      query {
+        categories {
+          id
+          categoryName
+          notes {
+            noteTitle
+          }
+        }
+      }
+    `);
+
+    watch(() => {
+      if (result.value !== undefined) {
+        state.allCategories = result.value.categories;
+        const data = result.value.categories;
+      }
+      console.log(result.value);
+    });
   },
   getCurrentCategory: async (id) => {
     const res = await fetch(`http://localhost:5000/category/${id}`);
