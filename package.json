@@ -13,6 +13,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "core-js": "^3.6.5",
+    "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
     "json-server": "^0.16.3",
     "vue": "^3.0.0",
