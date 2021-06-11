@@ -9,7 +9,7 @@
           <input type="text" v-model="newCategoryName" class="input" />
           <button
             @click="
-              addNewCategory(newCategoryName);
+              addNewCategory({ categoryName: newCategoryName });
               toggleAddCategoryModal();
               newCategoryName = '';
             "
@@ -64,7 +64,6 @@
       :key="category.id"
       @click="getCurrentCategory(category)"
     >
-
       <h5>{{ category.categoryName }}</h5>
       <span>{{ category.notes.length }}</span>
     </div>
@@ -96,7 +95,7 @@
 <script>
 import { ref, inject } from "vue";
 import Modal from "@/components/Modal";
-
+import useAddCategoryMutation from "../mutations/addNewCategory";
 export default {
   name: "Sidebar",
   components: { Modal },
@@ -105,8 +104,10 @@ export default {
   setup() {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
-    const { getCurrentCategory, addNewCategory } = useCategoryState;
+    const { getCurrentCategory } = useCategoryState;
     const { addNewTag, deleteTag } = useTagState;
+
+    const { addNewCategory } = useAddCategoryMutation();
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
