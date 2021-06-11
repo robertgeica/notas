@@ -96,6 +96,7 @@
 import { ref, inject } from "vue";
 import Modal from "@/components/Modal";
 import useAddCategoryMutation from "../mutations/addNewCategory";
+
 export default {
   name: "Sidebar",
   components: { Modal },
@@ -104,6 +105,7 @@ export default {
   setup() {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
+    
     const { getCurrentCategory } = useCategoryState;
     const { addNewTag, deleteTag } = useTagState;
 
@@ -178,8 +180,6 @@ export default {
 
   .category {
     margin: 5px auto;
-    h5 {
-    }
     cursor: pointer;
   }
   .tag {

@@ -34,6 +34,9 @@ const getters = {
 };
 
 const actions = {
+  clearCurrentCategory: () => {
+    state.currentCategory = {};
+  },
   deleteCategory: async (id) => {
     const res = await fetch(`http://localhost:5000/category/${id}`, {
       method: 'DELETE',
@@ -42,7 +45,6 @@ const actions = {
       },
     });
 
-    state.currentCategory = {};
     state.allCategories = await getters.getAllCategories();
   },
 

@@ -7,7 +7,10 @@
       <h3>{{ useCategoryState.state.currentCategory.categoryName }}</h3>
       <button
         class="button"
-        @click="deleteCategory(useCategoryState.state.currentCategory.id)"
+        @click="
+          deleteCategory({ id: useCategoryState.state.currentCategory.id });
+          clearCurrentCategory();
+        "
       >
         Delete category
       </button>
@@ -78,16 +81,14 @@
               :key="tag.tagName"
               v-for="tag in useTagState.state.allTags"
               :style="{
-                background: `${tag.tagColor} `
+                background: `${tag.tagColor} `,
               }"
-              @click="
-                addTagId(tag.id);
-              "
+              @click="addTagId(tag.id)"
             >
               #{{ tag.tagName }}
             </span>
           </div>
-          <p>Added tags: {{ noteTags }} </p>
+          <p>Added tags: {{ noteTags }}</p>
 
           <button
             @click="
@@ -139,6 +140,7 @@
 <script>
 import { ref, inject } from "vue";
 import Modal from "@/components/Modal";
+import useDeleteCategoryMutation from "../mutations/deleteCategory";
 
 export default {
   name: "Notes",
@@ -149,8 +151,10 @@ export default {
     const useNoteState = inject("useNoteState");
     const useTagState = inject("useTagState");
 
-    const { deleteCategory, editCategory } = useCategoryState;
+    const { editCategory, clearCurrentCategory, getAllCategories } =
+      useCategoryState;
     const { getCurrentNote, addNote } = useNoteState;
+    const { deleteCategory } = useDeleteCategoryMutation();
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
@@ -184,12 +188,11 @@ export default {
       console.log(noteTags.value);
     };
 
-  
-
     return {
       showSidebar,
       toggleSidebar,
-
+      clearCurrentCategory,
+      getAllCategories,
       showEditCategoryModal,
       toggleEditCategoryModal,
 
