@@ -62,8 +62,9 @@
       class="category"
       v-for="category in allCategories"
       :key="category.id"
-      @click="getCurrentCategory(category.id)"
+      @click="getCurrentCategory(category)"
     >
+
       <h5>{{ category.categoryName }}</h5>
       <span>{{ category.notes.length }}</span>
     </div>
