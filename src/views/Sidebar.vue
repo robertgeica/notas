@@ -105,7 +105,6 @@ export default {
   setup() {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
-    
     const { getCurrentCategory } = useCategoryState;
     const { addNewTag, deleteTag } = useTagState;
 
@@ -127,7 +126,6 @@ export default {
     const newTagObj = ref({});
     return {
       getCurrentCategory,
-
       showSidebar,
       toggleSidebar,
 

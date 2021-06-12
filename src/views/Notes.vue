@@ -31,8 +31,8 @@
             <button
               @click="
                 editCategory(
-                  newCategoryName,
-                  useCategoryState.state.currentCategory
+                  {id: useCategoryState.state.currentCategory.id,
+                  categoryName: newCategoryName}
                 );
                 toggleEditCategoryModal();
               "
@@ -141,6 +141,7 @@
 import { ref, inject } from "vue";
 import Modal from "@/components/Modal";
 import useDeleteCategoryMutation from "../mutations/deleteCategory";
+import useEditCategoryMutation from "../mutations/editCategory";
 
 export default {
   name: "Notes",
@@ -151,11 +152,11 @@ export default {
     const useNoteState = inject("useNoteState");
     const useTagState = inject("useTagState");
 
-    const { editCategory, clearCurrentCategory, getAllCategories } =
-      useCategoryState;
+    const { clearCurrentCategory, getAllCategories } = useCategoryState;
     const { getCurrentNote, addNote } = useNoteState;
     const { deleteCategory } = useDeleteCategoryMutation();
-
+    const { editCategory } = useEditCategoryMutation();
+;
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
 

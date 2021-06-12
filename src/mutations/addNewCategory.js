@@ -16,6 +16,6 @@ export default function useAddCategoryMutation(newCategoryName) {
       },
     })
   );
-  
+
   return { addNewCategory: (newCategoryName) => mutate(newCategoryName) };
 }
