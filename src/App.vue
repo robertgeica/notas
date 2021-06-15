@@ -4,11 +4,11 @@
 
 <script>
 import { provide } from 'vue';
-import { DefaultApolloClient } from "@vue/apollo-composable";
 import useCategoryState from '@/store/useCategoryState';
 import useTagState from '@/store/useTagState';
 import useNoteState from '@/store/useNoteState';
 import Home from "./views/Home";
+import { DefaultApolloClient } from "@vue/apollo-composable";
 import apolloClient from './apollo-server';
 
 export default {
@@ -18,7 +18,6 @@ export default {
   },
   
   setup() {
-    provide(DefaultApolloClient, apolloClient);
     provide('useCategoryState', useCategoryState);
     provide('useTagState', useTagState);
     provide('useNoteState', useNoteState);
