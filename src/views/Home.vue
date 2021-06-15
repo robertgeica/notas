@@ -25,11 +25,13 @@ export default {
   setup() {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
+
     const getCategories = () => useCategoryState.getAllCategories();
     const getTags = () => useTagState.getAllTags();
 
     getCategories();
     getTags();
+    
     return { useCategoryState, useTagState };
   },
 };

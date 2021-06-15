@@ -1,6 +1,7 @@
 import { reactive, readonly, watch, ref } from 'vue';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@vue/apollo-composable';
+import apolloClient from '../apollo-server';
 
 const state = reactive({
   allCategories: [],
@@ -8,8 +9,8 @@ const state = reactive({
 });
 
 const getters = {
-  getAllCategories: () => {
-    const { result } = useQuery(gql`
+  getAllCategories: async () => {
+    const query = gql`
       query {
         categories {
           id
@@ -20,12 +21,14 @@ const getters = {
           }
         }
       }
-    `);
-    watch(() => {
-      if (result.value !== undefined) {
-        state.allCategories = result.value.categories;
-      }
+    `;
+
+    const r = await apolloClient.query({
+      query,
     });
+
+    state.allCategories =r.data.categories;
+    console.log(state);
   },
   getCurrentCategory: (currentCategory) => {
     state.currentCategory = currentCategory;
@@ -36,7 +39,6 @@ const actions = {
   clearCurrentCategory: () => {
     state.currentCategory = {};
   },
- 
 };
 
 export default { state: readonly(state), ...getters, ...actions };
