@@ -84,7 +84,7 @@
         #{{ tag.tagName }}
       </h5>
 
-      <span @click="deleteTag(tag.id)"><i class="fas fa-trash-alt"></i></span>
+      <span @click="deleteTag({id: tag.id})"><i class="fas fa-trash-alt"></i></span>
     </div>
 
     <div class="sidebar-toggler">
@@ -101,6 +101,7 @@ import { ref, inject } from "vue";
 import Modal from "@/components/Modal";
 import useAddCategoryMutation from "../mutations/addNewCategory";
 import useAddTagMutation from "../mutations/addNewTag";
+import useDeleteTagMutation from "../mutations/deleteTag";
 
 export default {
   name: "Sidebar",
@@ -111,10 +112,10 @@ export default {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
     const { getCurrentCategory } = useCategoryState;
-    const { deleteTag } = useTagState;
 
     const { addNewCategory } = useAddCategoryMutation();
     const { addNewTag } = useAddTagMutation();
+    const { deleteTag } = useDeleteTagMutation();
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
