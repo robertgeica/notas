@@ -2,22 +2,26 @@
   <div class="sidebar" v-if="showSidebar">
     <div
       v-if="useCategoryState.state.currentCategory.categoryName"
-      class="note-actions"
+      class="category-actions"
     >
       <h3>{{ useCategoryState.state.currentCategory.categoryName }}</h3>
-      <button
-        class="button"
-        @click="
-          deleteCategory({ id: useCategoryState.state.currentCategory.id });
-          clearCurrentCategory();
-        "
-      >
-        Delete category
-      </button>
+      <div class="button-icons">
+        <span @click="toggleAddNoteModal"
+          ><i class="far fa-plus-square"></i
+        ></span>
 
-      <button class="button" @click="toggleEditCategoryModal()">
-        Edit category
-      </button>
+        <span @click="toggleEditCategoryModal()">
+          <i class="far fa-edit"></i>
+        </span>
+
+        <span
+          @click="deleteCategory({id: useCategoryState.state.currentCategory.id})"
+        >
+          <i class="far fa-trash-alt"></i>
+        </span>
+      </div>
+
+      
       <div v-if="showEditCategoryModal">
         <Modal @close="toggleEditCategoryModal">
           <template v-slot:actions>
@@ -48,7 +52,7 @@
 
     <div
       v-if="useCategoryState.state.currentCategory.categoryName"
-      class="note-actions"
+      class="search-action"
     >
       <input
         type="text"
@@ -56,7 +60,6 @@
         v-model="search"
         @keyup="searchNote"
       />
-      <button @click="toggleAddNoteModal">Add note</button>
     </div>
 
     <div v-if="showAddNoteModal">
@@ -82,6 +85,9 @@
               v-for="tag in useTagState.state.allTags"
               :style="{
                 background: `${tag.tagColor} `,
+                border: `${
+                  noteTags.find((id) => id === tag.id) ? '3px solid black' : ''
+                }`,
               }"
               @click="addTagId(tag.id)"
             >
@@ -112,27 +118,39 @@
 
     <div
       :key="note"
-      v-for="note in useCategoryState.state.currentCategory.notes"
-      @click="getCurrentNote(note)"
+      v-for="note in searchNote()"
+      @click="
+        getCurrentNote(note);
+        setSelected(note.noteTitle);
+      "
+      :class="{ selected: note.noteTitle == selected }"
       class="note"
     >
-      <h4>{{ note.noteTitle }}</h4>
+      <h4 class="note-title">{{ note.noteTitle }}</h4>
       <div class="tags">
         <span
           :key="tag"
           v-for="tag in note.noteTags"
           :style="{
-            background: `${useTagState.state.allTags[tag].tagColor} `,
+            background: `${useTagState.state.allTags
+              .filter((tagItem) => tagItem.id === tag)
+              .map((obj) => obj.tagColor)} `,
           }"
         >
-          #{{ useTagState.state.allTags[tag].tagName }}
+          #{{
+            useTagState.state.allTags
+              .filter((tagItem) => tagItem.id === tag)
+              .map((obj, index) => obj.tagName)[0]
+          }}
         </span>
       </div>
       <p>{{ note.noteBody.substr(0, 100) }} ...</p>
     </div>
-    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+    <div class="sidebar-toggler">
+      <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+    </div>
   </div>
-  <div class="toggle-notesbar-on" v-else>
+  <div class="toggle-sidebar-on" v-else>
     <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
   </div>
 </template>
@@ -189,6 +207,23 @@ export default {
       console.log(noteTags.value);
     };
 
+    
+    const search = ref("");
+
+    const searchNote = () => {
+      if (!search.value.toLowerCase().trim())
+        return useCategoryState.state.currentCategory.notes;
+      return useCategoryState.state.currentCategory.notes.filter(
+        (note) => note.noteTitle.toLowerCase().indexOf(search.value) > -1
+      );
+    };
+
+    const selected = ref(null);
+    const setSelected = (value) => {
+      selected.value = value;
+    };
+
+
     return {
       showSidebar,
       toggleSidebar,
@@ -210,41 +245,96 @@ export default {
       toggleAddNoteModal,
       newNote,
       noteTags,
+
+      search,
+      searchNote,
+      selected,
+      setSelected,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.selected {
+  background-color: #b6bec2;
+}
+
+.sidebar-toggler {
+  position: fixed;
+  bottom: 0%;
+  margin-left: 16em;
+  width: auto;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
   margin: 0;
   width: 20em;
+  min-width: 20em;
   height: 100%;
   background-color: #f5f7f8;
   overflow-y: auto;
 
-  .note-actions {
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+
+  .category-actions {
     display: flex;
-    flex-direction: column;
-    width: 80%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+
+    .button-icons {
+      margin: auto 0 auto 1em;
+
+      span {
+        margin: 0.5em 0 0.5em 0.5em;
+        cursor: pointer;
+
+        &:hover {
+          color: #797979;
+        }
+
+        i {
+          margin-left: 0.5em;
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+
+  .search-action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
     margin: 0 auto;
 
     input {
       margin: 10px 0;
-    }
-
-    input,
-    button {
       padding: 10px 0;
       border-radius: 5px;
       border: none;
+      width: 100%;
     }
 
-    button {
+    span {
+      margin: auto 0;
+      font-size: 1.1em;
       cursor: pointer;
-      margin: 0 0 15px;
     }
   }
 
@@ -252,9 +342,14 @@ export default {
     padding: 0 10px;
     text-align: left;
     cursor: pointer;
-
+    width: 90%;
+    margin: 0 auto;
     &:hover {
       background-color: #b6bec2;
+    }
+
+    .note-title {
+      margin: 1em 0;
     }
 
     .tags {
@@ -279,6 +374,7 @@ export default {
       border: 1px solid black;
       border-radius: 5px;
       cursor: pointer;
+      color: #fff;
     }
   }
 }

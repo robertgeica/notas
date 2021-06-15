@@ -42,7 +42,5 @@ export default {
   color: #333;
   display: flex;
   flex-direction: column;
-
- 
 }
 </style>

@@ -1,8 +1,6 @@
 <template>
   <h1></h1>
   <div class="sidebar" v-if="showSidebar">
-    <h3>Notes-App</h3>
-
     <div v-if="showAddCategoryModal">
       <Modal @close="toggleAddCategoryModal">
         <template v-slot:actions>
@@ -55,7 +53,9 @@
 
     <div class="categories-actions">
       <h4>Categories</h4>
-      <span class="add" @click="toggleAddCategoryModal()">+</span>
+      <span class="add" @click="toggleAddCategoryModal()"
+        ><i class="far fa-plus-square"></i
+      ></span>
     </div>
 
     <div
@@ -70,7 +70,9 @@
 
     <div class="tags-actions">
       <h4>Tags</h4>
-      <span class="add" @click="toggleAddTagModal">+</span>
+      <span class="add" @click="toggleAddTagModal"
+        ><i class="far fa-plus-square"></i
+      ></span>
     </div>
 
     <div class="tag" :key="tag.id" v-for="tag in allTags">
@@ -85,7 +87,9 @@
       <span @click="deleteTag(tag.id)"><i class="fas fa-trash-alt"></i></span>
     </div>
 
-    <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+    <div class="sidebar-toggler">
+      <i class="fas fa-arrow-left toggle-arrow" @click="toggleSidebar"></i>
+    </div>
   </div>
   <div class="toggle-sidebar-on" v-else>
     <i class="fas fa-arrow-right toggle-arrow" @click="toggleSidebar"></i>
@@ -152,9 +156,14 @@ export default {
   flex-direction: column;
   margin: 0;
   width: 13em;
+  min-width: 13em;
   height: 100%;
   background-color: #ecf0f1;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .input {
     border: 1px solid grey;
@@ -165,7 +174,7 @@ export default {
   .category,
   .tags-actions,
   .tag {
-    width: 90%;
+    width: 85%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -173,11 +182,15 @@ export default {
     span {
       margin: auto 0 auto 1em;
       cursor: pointer;
+
+      font-size: 1.1em;
     }
   }
 
   .category {
     margin: 5px auto;
+    h5 {
+    }
     cursor: pointer;
   }
   .tag {
@@ -188,6 +201,13 @@ export default {
       cursor: pointer;
       color: #fff;
     }
+  }
+
+  .sidebar-toggler {
+    position: fixed;
+    bottom: 0%;
+    margin-left: 9em;
+    width: auto;
   }
 }
 </style>

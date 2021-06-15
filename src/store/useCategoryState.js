@@ -27,8 +27,7 @@ const getters = {
       query,
     });
 
-    state.allCategories =r.data.categories;
-    console.log(state);
+    state.allCategories = r.data.categories;
   },
   getCurrentCategory: (currentCategory) => {
     state.currentCategory = currentCategory;

@@ -45,7 +45,12 @@
             background: `${useTagState.state.allTags[tag].tagColor} `,
           }"
           @dblclick="
-            deleteTagFromNote(useTagState.state.allTags[tag].id, useNoteState.state.currentNote, category.currentCategory)"
+            deleteTagFromNote(
+              useTagState.state.allTags[tag].id,
+              useNoteState.state.currentNote,
+              category.currentCategory
+            )
+          "
         >
           #{{ useTagState.state.allTags[tag].tagName }}
         </span>
@@ -65,9 +70,18 @@
           </option>
         </select>
         <span
-          @click="addTagToNote(noteTag, useTagState.state.allTags, useNoteState.state.currentNote, category.currentCategory)"
-        >Add</span>
-
+          @click="
+            addTagToNote(
+              noteTag,
+              useTagState.state.allTags,
+              useNoteState.state.currentNote,
+              category.currentCategory
+            )
+          "
+        >
+          <i class="far fa-plus-square"></i>
+        </span>
+        >
       </div>
     </div>
   </div>
@@ -83,7 +97,8 @@ export default {
   setup() {
     const useNoteState = inject("useNoteState");
     const useTagState = inject("useTagState");
-    const { editNote, deleteNote, addTagToNote, deleteTagFromNote } = useNoteState;
+    const { editNote, deleteNote, addTagToNote, deleteTagFromNote } =
+      useNoteState;
 
     const newNoteTitle = ref(null);
     const newNoteBody = ref(null);
@@ -115,7 +130,7 @@ export default {
       addTagToNote,
       deleteTagFromNote,
 
-      noteTag
+      noteTag,
     };
   },
 };
@@ -140,7 +155,8 @@ export default {
   }
 
   span {
-    margin: auto 1em;
+    margin: auto .5em;
+    font-size: 1.1em;
     cursor: pointer;
   }
 }
@@ -163,6 +179,19 @@ textarea {
   vertical-align: top;
   box-sizing: border-box;
   padding: 0 20px;
+
+  &::-webkit-scrollbar {
+    width: 0.6em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
 }
 
 textarea {
@@ -188,6 +217,7 @@ textarea {
       cursor: pointer;
       color: #fff;
       margin: 0.5em;
+      font-size: 13px;
     }
   }
 
@@ -195,25 +225,22 @@ textarea {
     display: flex;
 
     span {
+      font-size: 1.2em;
       padding: 5px 10px;
       border-radius: 5px;
-      background-color: grey;
       cursor: pointer;
-      color: #000;
       margin: auto 0.5em;
-      height: 1.5em;
+      height: 1em;
+      &:hover {
+        color: #797979;
+      }
     }
 
     select {
-      padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
-      margin: auto 0.5em;
-      height: 2.5em;
-
-      option {
-        font-size: 16px;
-      }
+      margin: auto 0;
+      height: 2em;
     }
   }
 }
