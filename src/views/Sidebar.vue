@@ -38,7 +38,7 @@
 
           <button
             @click="
-              addNewTag(newTagObj);
+              addNewTag({tagName: newTagObj.tagName, tagColor: newTagObj.tagColor});
               toggleAddTagModal();
               newTagObj = {};
             "
@@ -100,6 +100,7 @@
 import { ref, inject } from "vue";
 import Modal from "@/components/Modal";
 import useAddCategoryMutation from "../mutations/addNewCategory";
+import useAddTagMutation from "../mutations/addNewTag";
 
 export default {
   name: "Sidebar",
@@ -110,9 +111,10 @@ export default {
     const useCategoryState = inject("useCategoryState");
     const useTagState = inject("useTagState");
     const { getCurrentCategory } = useCategoryState;
-    const { addNewTag, deleteTag } = useTagState;
+    const { deleteTag } = useTagState;
 
     const { addNewCategory } = useAddCategoryMutation();
+    const { addNewTag } = useAddTagMutation();
 
     const showSidebar = ref(true);
     const toggleSidebar = () => (showSidebar.value = !showSidebar.value);
