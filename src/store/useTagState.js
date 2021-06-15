@@ -1,4 +1,7 @@
 import { reactive, readonly } from 'vue';
+import gql from 'graphql-tag';
+import { useQuery, useMutation } from '@vue/apollo-composable';
+import apolloClient from '../apollo-server';
 
 const state = reactive({
   allTags: [],
@@ -6,10 +9,22 @@ const state = reactive({
 
 const getters = {
   getAllTags: async () => {
-    const res = await fetch('http://localhost:5000/tags');
-    const data = await res.json();
-    state.allTags = await data;
-    return data;
+    const query = gql`
+      query {
+        tags {
+          id
+          tagName
+          tagColor
+        }
+      }
+    `;
+
+    const r = await apolloClient.query({
+      query,
+    });
+
+    state.allTags = r.data.tags;
+
   },
 };
 

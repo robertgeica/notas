@@ -182,7 +182,7 @@ export default {
     const toggleEditCategoryModal = () =>
       (showEditCategoryModal.value = !showEditCategoryModal.value);
 
-    const newCategoryName = ref("");
+    const newCategoryName = ref();
 
     const showAddNoteModal = ref(false);
     const toggleAddNoteModal = () => {
